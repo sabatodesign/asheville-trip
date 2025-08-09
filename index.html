@@ -4,343 +4,411 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Asheville Family Trip — Color Dashboard</title>
+<title>Asheville Family Trip — Dashboard</title>
 <style>
-  :root{
-    --bg:#0b1021;
-    --card:#101735;
-    --soft:#0e1430;
-    --ink:#eaf1ff;
-    --muted:#9eb0d7;
-    --accent:#6ee7e7;   /* teal */
-    --accent2:#f8d477;  /* sun */
-    --accent3:#f79ac0;  /* rose */
-    --border:rgba(255,255,255,0.12);
-  }
-  *{box-sizing:border-box}
-  html,body{margin:0;padding:0;background:linear-gradient(160deg,var(--bg),#0d1730 40%,#0f1b40);color:var(--ink);font-family:Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif}
-  header{position:sticky;top:0;backdrop-filter:saturate(140%) blur(6px);background:rgba(10,16,35,.7);border-bottom:1px solid var(--border);z-index:10}
-  .wrap{max-width:1100px;margin:0 auto;padding:22px}
-  h1{margin:0;font-size:22px;letter-spacing:.3px}
-  .sub{color:var(--muted);font-size:14px;margin-top:6px}
-  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:14px}
-  .card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:16px;box-shadow:0 8px 24px rgba(0,0,0,.22)}
-  .tag{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
-  .value{font-size:16px;margin-top:6px}
-  .btns{display:flex;gap:10px;margin-top:8px}
-  .btn{background:linear-gradient(135deg,var(--accent),#86f1f1);color:#062b2b;border:none;border-radius:10px;padding:10px 12px;font-weight:600;cursor:pointer}
-  .btn.secondary{background:linear-gradient(135deg,var(--accent2),#ffe9a5);color:#2b2106}
-  section h2{font-size:18px;margin:10px 0 10px 0}
-  .weather{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px}
-  .wcard{background:linear-gradient(135deg,#192145,#0f1633);border:1px solid var(--border);border-radius:16px;padding:14px;text-align:center;box-shadow:0 10px 28px rgba(0,0,0,.25)}
-  .wicon{font-size:26px;margin-bottom:6px}
-  .wday{font-weight:700}
-  .wtemps{margin-top:4px}
-  .wdesc{color:var(--muted);font-size:12px;margin-top:4px}
-  .day{margin-top:18px}
-  .dayhead{display:flex;justify-content:space-between;align-items:center;background:linear-gradient(90deg,#1a2250,#1a244e);border:1px solid var(--border);border-radius:14px;padding:10px 12px}
-  .dayhead.alt{background:linear-gradient(90deg,#3a1f3d,#2a1430)}
-  .weekday{font-weight:800;letter-spacing:.3px}
-  .datecode{color:var(--muted);font-size:12px}
-  .item{display:grid;grid-template-columns:90px 1fr;gap:10px;border-left:3px solid var(--accent);padding:10px 12px;margin-top:10px;background:rgba(255,255,255,.03);border-radius:10px}
-  .item .time{color:var(--accent2);font-weight:700}
-  .item .title{font-weight:700}
-  .item .meta{color:var(--muted);font-size:13px;margin-top:2px}
-  .dot{margin:0 6px;color:#6c7aa7}
-  table{width:100%;border-collapse:separate;border-spacing:0;overflow:hidden;border-radius:14px;border:1px solid var(--border);font-size:14px}
-  th,td{padding:10px 12px;border-bottom:1px solid var(--border)}
-  th{background:#151d3b;text-align:left}
-  tr:last-child td{border-bottom:none}
-  a{color:#8ee7ff;text-decoration:none;border-bottom:1px dashed #8ee7ff}
-  a:hover{border-bottom-style:solid}
-  footer{color:var(--muted);text-align:center;padding:30px}
+:root{
+  --bg:#f5f7fb;
+  --ink:#12172a;
+  --muted:#6e7a98;
+  --card:#ffffffcc;
+  --accent:#ff6b57;    /* coral */
+  --accent2:#67c5ff;   /* sky */
+  --lime:#b7f171;
+  --border:rgba(0,0,0,.06);
+  --shadow: 0 10px 30px rgba(37,44,72,.08), 0 2px 8px rgba(37,44,72,.06);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:radial-gradient(1200px 600px at 10% 0%, #eaf3ff, #f8f9ff 40%, #f5f7fb);color:var(--ink);font-family:Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif}
+a{color:#0b74d8;text-decoration:none;border-bottom:1px dashed #0b74d8}
+a:hover{border-bottom-style:solid}
+.layout{display:grid;grid-template-columns:260px 1fr 360px;gap:18px;max-width:1280px;margin:24px auto;padding:0 16px}
+aside{position:sticky;top:18px;height:calc(100vh - 36px);background:var(--card);backdrop-filter:saturate(160%) blur(8px);border:1px solid var(--border);border-radius:22px;box-shadow:var(--shadow);padding:18px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px}
+.brand .dot{width:12px;height:12px;border-radius:999px;background:linear-gradient(135deg,var(--accent),#ffa68f);box-shadow:0 0 0 6px rgba(255,107,87,.15)}
+.nav{margin-top:16px}
+.nav .item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;margin-bottom:8px;color:var(--ink);border:1px solid transparent}
+.nav .item.active{background:#fff;border-color:var(--border);box-shadow:var(--shadow)}
+.nav .item:hover{background:#fff}
+.badge{background:linear-gradient(135deg,var(--accent2),#c1eaff);color:#064469;padding:6px 10px;border-radius:999px;font-weight:700;font-size:12px}
+
+main{}
+section{background:var(--card);backdrop-filter:saturate(160%) blur(8px);border:1px solid var(--border);border-radius:22px;box-shadow:var(--shadow);padding:18px;margin-bottom:18px}
+h2{margin:0 0 12px 0;font-size:18px}
+.search{display:flex;gap:10px}
+.search input{flex:1;border:1px solid var(--border);border-radius:12px;padding:10px 12px;background:#fff}
+.search button{background:linear-gradient(135deg,var(--accent),#ffa68f);border:none;border-radius:10px;padding:10px 12px;color:white;font-weight:700;cursor:pointer}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.card{background:#fff;border:1px solid var(--border);border-radius:18px;box-shadow:var(--shadow);overflow:hidden}
+.card-destination{display:flex;flex-direction:column}
+.thumb{height:140px;background-size:cover;background-position:center}
+.cbody{padding:12px}
+.ctitle{font-weight:800}
+.cmeta{color:var(--muted);font-size:12px;margin-top:4px}
+.cdesc{color:#3d4869;font-size:13px;margin-top:6px}
+
+.day-group{margin-top:8px}
+.day-head{display:flex;justify-content:space-between;align-items:center;padding:6px 4px 10px}
+.pill{background:linear-gradient(135deg,var(--lime),#e6ffd0);border:1px solid #dff8b9;color:#22410a;padding:6px 10px;border-radius:999px;font-weight:800;font-size:12px}
+.date{color:var(--muted);font-size:12px}
+
+.wgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px}
+.wcard{padding:12px;text-align:center}
+.wicon{font-size:28px}
+.wday{font-weight:800;margin-top:6px}
+.wtemps{margin-top:2px}
+.wdesc{color:var(--muted);font-size:12px;margin-top:2px}
+.dot{color:#c6cfeb;margin:0 6px}
+
+.rightcol{position:sticky;top:18px;height:calc(100vh - 36px)}
+.panel{background:var(--card);border:1px solid var(--border);border-radius:22px;box-shadow:var(--shadow);padding:18px;margin-bottom:18px}
+.table{width:100%;border-collapse:separate;border-spacing:0;border:1px solid var(--border);border-radius:14px;overflow:hidden}
+.table th,.table td{padding:10px 12px;border-bottom:1px solid var(--border);font-size:14px}
+.table th{background:#f6f8ff;text-align:left}
+.table tr:last-child td{border-bottom:none}
+.kv{display:grid;grid-template-columns:1fr;gap:6px}
+.kv .row{display:flex;justify-content:space-between;gap:10px;font-size:14px}
+.kv .key{color:var(--muted)}
+.footer{color:var(--muted);text-align:center;padding:22px}
+@media (max-width:1200px){.layout{grid-template-columns:260px 1fr} .rightcol{position:static;height:auto}}
+@media (max-width:900px){.layout{grid-template-columns:1fr} aside{position:static;height:auto;margin-bottom:12px}}
 </style>
-<script>
-  function printPage(){ window.print(); }
-</script>
 </head>
 <body>
-<header>
-  <div class="wrap">
-    <h1>Asheville Family Trip Dashboard</h1>
-    <div class="sub">Aug 10–14, 2025 · 2 adults + 2 kids · Airbnb in West Asheville</div>
-    <div class="btns">
-      <button class="btn" onclick="printPage()">Print / Save PDF</button>
-      <a class="btn secondary" href="asheville_itinerary_locations.csv" download>Download CSV</a>
-    </div>
+<div class="layout">
+
+<aside>
+  <div class="brand"><span class="dot"></span> Asheville Trip</div>
+  <div class="nav">
+    <a class="item active" href="#destinations">Dashboard</a>
+    <a class="item" href="#byday">Itinerary</a>
+    <a class="item" href="#travel">Travel</a>
+    <a class="item" href="#weather">Weather</a>
+    <a class="item" href="asheville_itinerary_locations.csv" download>Download CSV</a>
   </div>
-</header>
+  <div style="margin-top:12px" class="badge">Aug 10–14, 2025</div>
+</aside>
 
-<main class="wrap">
+
+<main>
   <section>
-    <div class="grid">
-
-          <div class="card">
-            <div class="tag">Dates</div>
-            <div class="value">Aug 10–14, 2025</div>
-          </div>
-
-          <div class="card">
-            <div class="tag">Home Base</div>
-            <div class="value">Airbnb — 16 Crestview Ct, Asheville, NC 28806</div>
-          </div>
-
-          <div class="card">
-            <div class="tag">Biltmore House Entry</div>
-            <div class="value">Tue, Aug 12 at 10:45 AM</div>
-          </div>
-
-          <div class="card">
-            <div class="tag">Rental Car</div>
-            <div class="value">AVL on-airport pickup (counters by baggage claim)</div>
-          </div>
-
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+      <div>
+        <h2 style="margin:0">Hello!</h2>
+        <div style="color:#6e7a98">Welcome back — your Asheville plan is ready.</div>
+      </div>
+      <div class="badge">Family of 4</div>
+    </div>
+    <div class="search" style="margin-top:12px">
+      <input placeholder="Search your stops or addresses (tip: use your browser’s Find)…" />
+      <button onclick="window.print()">Print / Save PDF</button>
     </div>
   </section>
 
-  <section style="margin-top:18px;">
-    <h2>Weather — Asheville (fun little widgets)</h2>
-    <div class="weather">
+<section id="destinations">
+  <h2>Explore</h2>
+  <div class="grid">
+          <div class="card card-destination">
+            <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1600&auto=format&fit=crop');"></div>
+            <div class="cbody">
+              <div class="ctitle">Arrive at AVL</div>
+              <div class="cmeta">~6:50 PM · <a target="_blank" href="https://www.google.com/maps/search/?api=1&query=61+Terminal+Dr%2C+Fletcher%2C+NC+28732">Asheville Regional Airport</a></div>
+              <div class="cdesc">Pick up on-airport rental car; counters by baggage claim.</div>
+            </div>
+          </div>
 
-      <div class="wcard">
-        <div class="wicon">⛅️</div>
-        <div class="wday">Sun, Aug 10</div>
-        <div class="wtemps"><strong>75°</strong> / 67°</div>
-        <div class="wdesc">Clouds & sun · iso. PM t‑storm</div>
+          <div class="card card-destination">
+            <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1506806732259-39c2d0268443?q=80&w=1600&auto=format&fit=crop');"></div>
+            <div class="cbody">
+              <div class="ctitle">Grocery Run</div>
+              <div class="cmeta">After arrival · <a target="_blank" href="https://www.google.com/maps/search/?api=1&query=669+Haywood+Rd%2C+Asheville%2C+NC+28806">Ingles Markets #5</a></div>
+              <div class="cdesc">Quick snacks & breakfast items.</div>
+            </div>
+          </div>
+
+          <div class="card card-destination">
+            <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1604908554027-9e54f8f5c67a?q=80&w=1600&auto=format&fit=crop');"></div>
+            <div class="cbody">
+              <div class="ctitle">Dinner – Rocky’s</div>
+              <div class="cmeta">6:30–7:00 PM · <a target="_blank" href="https://www.google.com/maps/search/?api=1&query=1455+Patton+Ave%2C+Asheville%2C+NC+28806">Rocky’s Hot Chicken Shack (West)</a></div>
+              <div class="cdesc">Counter service; kid‑friendly.</div>
+            </div>
+          </div>
+
+          <div class="card card-destination">
+            <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1573871628196-f6f1fafe4afe?q=80&w=1600&auto=format&fit=crop');"></div>
+            <div class="cbody">
+              <div class="ctitle">WNC Nature Center</div>
+              <div class="cmeta">10:00 AM – 1:00 PM · <a target="_blank" href="https://www.google.com/maps/search/?api=1&query=75+Gashes+Creek+Rd%2C+Asheville%2C+NC+28805">WNC Nature Center</a></div>
+              <div class="cdesc">Plan 2–3 hrs. Great for toddlers.</div>
+            </div>
+          </div>
+
+          <div class="card card-destination">
+            <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1565299543923-37dd378bd2f6?q=80&w=1600&auto=format&fit=crop');"></div>
+            <div class="cbody">
+              <div class="ctitle">Lunch – White Duck Taco</div>
+              <div class="cmeta">1:15 PM · <a target="_blank" href="https://www.google.com/maps/search/?api=1&query=12+Biltmore+Ave%2C+Asheville%2C+NC+28801">White Duck Taco (Downtown)</a></div>
+              <div class="cdesc">Order at counter; courtyard seating.</div>
+            </div>
+          </div>
+
+          <div class="card card-destination">
+            <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1603569283847-1f9f3f2b2d83?q=80&w=1600&auto=format&fit=crop');"></div>
+            <div class="cbody">
+              <div class="ctitle">Splasheville</div>
+              <div class="cmeta">3:00 – 4:30 PM · <a target="_blank" href="https://www.google.com/maps/search/?api=1&query=121+College+St%2C+Asheville%2C+NC+28801">Pack Square Park</a></div>
+              <div class="cdesc">Bring towels & change of clothes.</div>
+            </div>
+          </div>
+        </div>
+</section>
+
+  <section id='byday'><h2>Itinerary by Date</h2>
+      <div class="day-group" id="day-2025-08-10">
+        <div class="day-head">
+          <div class="pill">Sunday</div>
+          <div class="date">2025-08-10</div>
+        </div>
+        <div class="grid">
+          <div class="card card-destination">
+            <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1600&auto=format&fit=crop');"></div>
+            <div class="cbody">
+              <div class="ctitle">Arrive at AVL</div>
+              <div class="cmeta">~6:50 PM · <a target="_blank" href="https://www.google.com/maps/search/?api=1&query=61+Terminal+Dr%2C+Fletcher%2C+NC+28732">Asheville Regional Airport</a></div>
+              <div class="cdesc">Pick up on-airport rental car; counters by baggage claim.</div>
+            </div>
+          </div>
+
+          <div class="card card-destination">
+            <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1506806732259-39c2d0268443?q=80&w=1600&auto=format&fit=crop');"></div>
+            <div class="cbody">
+              <div class="ctitle">Grocery Run</div>
+              <div class="cmeta">After arrival · <a target="_blank" href="https://www.google.com/maps/search/?api=1&query=669+Haywood+Rd%2C+Asheville%2C+NC+28806">Ingles Markets #5</a></div>
+              <div class="cdesc">Quick snacks & breakfast items.</div>
+            </div>
+          </div>
+
+          <div class="card card-destination">
+            <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1604908554027-9e54f8f5c67a?q=80&w=1600&auto=format&fit=crop');"></div>
+            <div class="cbody">
+              <div class="ctitle">Dinner – Rocky’s</div>
+              <div class="cmeta">6:30–7:00 PM · <a target="_blank" href="https://www.google.com/maps/search/?api=1&query=1455+Patton+Ave%2C+Asheville%2C+NC+28806">Rocky’s Hot Chicken Shack (West)</a></div>
+              <div class="cdesc">Counter service; kid‑friendly.</div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="wcard">
-        <div class="wicon">🌦️</div>
-        <div class="wday">Mon, Aug 11</div>
-        <div class="wtemps"><strong>77°</strong> / 65°</div>
-        <div class="wdesc">Cloudy, humid · a couple storms</div>
+      <div class="day-group" id="day-2025-08-11">
+        <div class="day-head">
+          <div class="pill">Monday</div>
+          <div class="date">2025-08-11</div>
+        </div>
+        <div class="grid">
+          <div class="card card-destination">
+            <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1573871628196-f6f1fafe4afe?q=80&w=1600&auto=format&fit=crop');"></div>
+            <div class="cbody">
+              <div class="ctitle">WNC Nature Center</div>
+              <div class="cmeta">10:00 AM – 1:00 PM · <a target="_blank" href="https://www.google.com/maps/search/?api=1&query=75+Gashes+Creek+Rd%2C+Asheville%2C+NC+28805">WNC Nature Center</a></div>
+              <div class="cdesc">Plan 2–3 hrs. Great for toddlers.</div>
+            </div>
+          </div>
+
+          <div class="card card-destination">
+            <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1565299543923-37dd378bd2f6?q=80&w=1600&auto=format&fit=crop');"></div>
+            <div class="cbody">
+              <div class="ctitle">Lunch – White Duck Taco</div>
+              <div class="cmeta">1:15 PM · <a target="_blank" href="https://www.google.com/maps/search/?api=1&query=12+Biltmore+Ave%2C+Asheville%2C+NC+28801">White Duck Taco (Downtown)</a></div>
+              <div class="cdesc">Order at counter; courtyard seating.</div>
+            </div>
+          </div>
+
+          <div class="card card-destination">
+            <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1603569283847-1f9f3f2b2d83?q=80&w=1600&auto=format&fit=crop');"></div>
+            <div class="cbody">
+              <div class="ctitle">Splasheville</div>
+              <div class="cmeta">3:00 – 4:30 PM · <a target="_blank" href="https://www.google.com/maps/search/?api=1&query=121+College+St%2C+Asheville%2C+NC+28801">Pack Square Park</a></div>
+              <div class="cdesc">Bring towels & change of clothes.</div>
+            </div>
+          </div>
+
+          <div class="card card-destination">
+            <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=1600&auto=format&fit=crop');"></div>
+            <div class="cbody">
+              <div class="ctitle">Dinner – Tupelo Honey</div>
+              <div class="cmeta">5:30 PM · <a target="_blank" href="https://www.google.com/maps/search/?api=1&query=12+College+St%2C+Asheville%2C+NC+28801">Tupelo Honey (Downtown)</a></div>
+              <div class="cdesc">Reserve to avoid a wait.</div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="wcard">
-        <div class="wicon">⛅️</div>
-        <div class="wday">Tue, Aug 12</div>
-        <div class="wtemps"><strong>82°</strong> / 64°</div>
-        <div class="wdesc">Mostly cloudy · slight PM storm</div>
+      <div class="day-group" id="day-2025-08-12">
+        <div class="day-head">
+          <div class="pill">Tuesday</div>
+          <div class="date">2025-08-12</div>
+        </div>
+        <div class="grid">
+          <div class="card card-destination">
+            <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1577733975190-95bc12a7ec3e?q=80&w=1600&auto=format&fit=crop');"></div>
+            <div class="cbody">
+              <div class="ctitle">Biltmore House Entry</div>
+              <div class="cmeta">10:45 AM (arrive estate ~9:45–10:00) · <a target="_blank" href="https://www.google.com/maps/search/?api=1&query=1+Lodge+St%2C+Asheville%2C+NC+28803">Biltmore House</a></div>
+              <div class="cdesc">Timed entry; light stroller best due to stairs.</div>
+            </div>
+          </div>
+
+          <div class="card card-destination">
+            <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1520072959219-c595dc870360?q=80&w=1600&auto=format&fit=crop');"></div>
+            <div class="cbody">
+              <div class="ctitle">Lunch – Stable Café</div>
+              <div class="cmeta">~1:15 PM · <a target="_blank" href="https://www.google.com/maps/search/?api=1&query=Stable+Caf%C3%A9%2C+Biltmore+Estate">Stable Café (on estate)</a></div>
+              <div class="cdesc">Reserve ahead.</div>
+            </div>
+          </div>
+
+          <div class="card card-destination">
+            <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1604594849809-dfedbc827105?q=80&w=1600&auto=format&fit=crop');"></div>
+            <div class="cbody">
+              <div class="ctitle">Antler Hill Village & Farmyard</div>
+              <div class="cmeta">3:00 – 5:00 PM · <a target="_blank" href="https://www.google.com/maps/search/?api=1&query=207+Dairy+Rd+%2F+225+Winery+Rd%2C+Asheville%2C+NC+28803">Antler Hill Village</a></div>
+              <div class="cdesc">Animals, ice cream, open greens.</div>
+            </div>
+          </div>
+
+          <div class="card card-destination">
+            <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1559334417-07a3d031c1b7?q=80&w=1600&auto=format&fit=crop');"></div>
+            <div class="cbody">
+              <div class="ctitle">Dinner – Cedric’s Tavern</div>
+              <div class="cmeta">5:30 PM · <a target="_blank" href="https://www.google.com/maps/search/?api=1&query=Antler+Hill+Village%2C+Asheville%2C+NC+28803">Cedric’s Tavern (on estate)</a></div>
+              <div class="cdesc">Reserve if staying on estate for dinner.</div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="wcard">
-        <div class="wicon">🌤️</div>
-        <div class="wday">Wed, Aug 13</div>
-        <div class="wtemps"><strong>83°</strong> / 63°</div>
-        <div class="wdesc">Clouds & sun · humid</div>
+      <div class="day-group" id="day-2025-08-13">
+        <div class="day-head">
+          <div class="pill">Wednesday</div>
+          <div class="date">2025-08-13</div>
+        </div>
+        <div class="grid">
+          <div class="card card-destination">
+            <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1551355738-2779b39a81c9?q=80&w=1600&auto=format&fit=crop');"></div>
+            <div class="cbody">
+              <div class="ctitle">North Carolina Arboretum</div>
+              <div class="cmeta">9:30 AM – 12:00 PM · <a target="_blank" href="https://www.google.com/maps/search/?api=1&query=100+Frederick+Law+Olmsted+Way%2C+Asheville%2C+NC+28806">NC Arboretum</a></div>
+              <div class="cdesc">Stroller‑friendly; parking ~$20/vehicle.</div>
+            </div>
+          </div>
+
+          <div class="card card-destination">
+            <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1509326066962-0d7ad34bd177?q=80&w=1600&auto=format&fit=crop');"></div>
+            <div class="cbody">
+              <div class="ctitle">Blue Ridge Parkway Overlooks</div>
+              <div class="cmeta">Afternoon (flex) · <a target="_blank" href="https://www.google.com/maps/search/?api=1&query=Blue+Ridge+Parkway%2C+Asheville%2C+NC">BRP near Arboretum</a></div>
+              <div class="cdesc">Short scenic stops + nap window.</div>
+            </div>
+          </div>
+
+          <div class="card card-destination">
+            <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1532635219-8f4d8e8126c9?q=80&w=1600&auto=format&fit=crop');"></div>
+            <div class="cbody">
+              <div class="ctitle">Dinner – Sierra Nevada Taproom</div>
+              <div class="cmeta">5:30 PM · <a target="_blank" href="https://www.google.com/maps/search/?api=1&query=100+Sierra+Nevada+Way%2C+Mills+River%2C+NC+28732">Sierra Nevada (Mills River)</a></div>
+              <div class="cdesc">Huge patio/greens; great with kids.</div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="wcard">
-        <div class="wicon">⛈️</div>
-        <div class="wday">Thu, Aug 14</div>
-        <div class="wtemps"><strong>83°</strong> / 65°</div>
-        <div class="wdesc">Partly sunny · chance t‑storm</div>
+      <div class="day-group" id="day-2025-08-14">
+        <div class="day-head">
+          <div class="pill">Thursday</div>
+          <div class="date">2025-08-14</div>
+        </div>
+        <div class="grid">
+          <div class="card card-destination">
+            <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1540577746913-9844fd032846?q=80&w=1600&auto=format&fit=crop');"></div>
+            <div class="cbody">
+              <div class="ctitle">Fly AVL → DCA (AA 5213)</div>
+              <div class="cmeta">10:26 AM (be at terminal ~8:00) · <a target="_blank" href="https://www.google.com/maps/search/?api=1&query=61+Terminal+Dr%2C+Fletcher%2C+NC+28732">Asheville Regional Airport</a></div>
+              <div class="cdesc">Return car on‑airport; follow Rental Car Return.</div>
+            </div>
+          </div>
+        </div>
       </div>
+    </section>
 
-    </div>
-    <div class="sub" style="margin-top:8px;">Snapshot forecast. For the most accurate view, check the day before and morning-of.</div>
-  </section>
-
-  <section style="margin-top:18px;">
-    <h2>Itinerary by Date</h2>
-
-      <section class="day">
-        <div class="dayhead">
-          <div class="weekday">Sunday, August 10</div>
-          <div class="datecode">2025-08-10</div>
-        </div>
-
-          <div class="item">
-            <div class="time">(ETA)</div>
-            <div class="title">Arrive AVL – pick up rental car</div>
-            <div class="meta"><a href='https://www.google.com/maps/search/?api=1&query=Asheville+Regional+Airport+%28AVL%29%2C+61+Terminal+Dr%2C+Fletcher%2C+NC+28732' target='_blank'>Asheville Regional Airport (AVL), 61 Terminal Dr, Fletcher, NC 28732</a><span class="dot">•</span>—<span class="dot">•</span>AA 5395 arrival; follow signs to Car Rental; cars are on-site by baggage claim</div>
-          </div>
-
-          <div class="item">
-            <div class="time">After arrival</div>
-            <div class="title">Grocery stop (closest to Airbnb)</div>
-            <div class="meta"><a href='https://www.google.com/maps/search/?api=1&query=Ingles+Markets+%235%2C+669+Haywood+Rd%2C+Asheville%2C+NC+28806' target='_blank'>Ingles Markets #5, 669 Haywood Rd, Asheville, NC 28806</a><span class="dot">•</span>5–8 min<span class="dot">•</span>Open daily ~7am–10/11pm; deli & hot bar</div>
-          </div>
-
-          <div class="item">
-            <div class="time">Dinner 6:30–7:00p</div>
-            <div class="title">Rocky’s Hot Chicken Shack (West)</div>
-            <div class="meta"><a href='https://www.google.com/maps/search/?api=1&query=1455+Patton+Ave%2C+Asheville%2C+NC+28806' target='_blank'>1455 Patton Ave, Asheville, NC 28806</a><span class="dot">•</span>10–12 min<span class="dot">•</span>Order at counter; kid-friendly; no reservation needed</div>
-          </div>
-
-      </section>
-
-      <section class="day">
-        <div class="dayhead">
-          <div class="weekday">Monday, August 11</div>
-          <div class="datecode">2025-08-11</div>
-        </div>
-
-          <div class="item">
-            <div class="time">10:00a–1:00p</div>
-            <div class="title">WNC Nature Center</div>
-            <div class="meta"><a href='https://www.google.com/maps/search/?api=1&query=75+Gashes+Creek+Rd%2C+Asheville%2C+NC+28805' target='_blank'>75 Gashes Creek Rd, Asheville, NC 28805</a><span class="dot">•</span>18–25 min<span class="dot">•</span>Last entry 3:30p; plan 2–3 hrs; animal feedings vary</div>
-          </div>
-
-          <div class="item">
-            <div class="time">1:15p</div>
-            <div class="title">Lunch – White Duck Taco (Downtown)</div>
-            <div class="meta"><a href='https://www.google.com/maps/search/?api=1&query=12+Biltmore+Ave%2C+Asheville%2C+NC+28801' target='_blank'>12 Biltmore Ave, Asheville, NC 28801</a><span class="dot">•</span>15–18 min<span class="dot">•</span>Casual; order at counter; stroller-friendly courtyard</div>
-          </div>
-
-          <div class="item">
-            <div class="time">3:00–4:30p</div>
-            <div class="title">Splasheville at Pack Square Park</div>
-            <div class="meta"><a href='https://www.google.com/maps/search/?api=1&query=121+College+St+%28Pack+Square+Park%29%2C+Asheville%2C+NC+28801' target='_blank'>121 College St (Pack Square Park), Asheville, NC 28801</a><span class="dot">•</span>15–18 min<span class="dot">•</span>Free splash pad; bring towels & change of clothes</div>
-          </div>
-
-          <div class="item">
-            <div class="time">5:30p (hold)</div>
-            <div class="title">Dinner – Tupelo Honey (Downtown)</div>
-            <div class="meta"><a href='https://www.google.com/maps/search/?api=1&query=12+College+St%2C+Asheville%2C+NC+28801' target='_blank'>12 College St, Asheville, NC 28801</a><span class="dot">•</span>15–18 min<span class="dot">•</span>Make a reservation; highchairs; Southern classics</div>
-          </div>
-
-      </section>
-
-      <section class="day">
-        <div class="dayhead">
-          <div class="weekday">Tuesday, August 12</div>
-          <div class="datecode">2025-08-12</div>
-        </div>
-
-          <div class="item">
-            <div class="time">9:45–10:00a ARRIVE ESTATE</div>
-            <div class="title">Drive to Biltmore Estate Gate</div>
-            <div class="meta"><a href='https://www.google.com/maps/search/?api=1&query=1+Lodge+St%2C+Asheville%2C+NC+28803' target='_blank'>1 Lodge St, Asheville, NC 28803</a><span class="dot">•</span>18–25 min to gate (+30–45 inside)<span class="dot">•</span>Allow ~45 min from gate to park/house via shuttle/walk; House entry is timed</div>
-          </div>
-
-          <div class="item">
-            <div class="time">10:45a (timed)</div>
-            <div class="title">Biltmore House Entry</div>
-            <div class="meta"><a href='https://www.google.com/maps/search/?api=1&query=Biltmore+House%2C+1+Lodge+St%2C+Asheville%2C+NC+28803' target='_blank'>Biltmore House, 1 Lodge St, Asheville, NC 28803</a><span class="dot">•</span>—<span class="dot">•</span>Strollers OK (lightweight best); stairs inside</div>
-          </div>
-
-          <div class="item">
-            <div class="time">1:15p (hold)</div>
-            <div class="title">Lunch – Stable Café (on estate)</div>
-            <div class="meta"><a href='https://www.google.com/maps/search/?api=1&query=Stable+Caf%C3%A9%2C+adjacent+to+Biltmore+House' target='_blank'>Stable Café, adjacent to Biltmore House</a><span class="dot">•</span>—<span class="dot">•</span>Advance reservations recommended</div>
-          </div>
-
-          <div class="item">
-            <div class="time">3:00–5:00p</div>
-            <div class="title">Antler Hill Village & Farmyard</div>
-            <div class="meta"><a href='https://www.google.com/maps/search/?api=1&query=207+Dairy+Rd+%2F+225+Winery+Rd%2C+Asheville%2C+NC+28803' target='_blank'>207 Dairy Rd / 225 Winery Rd, Asheville, NC 28803</a><span class="dot">•</span>—<span class="dot">•</span>Animals, ice cream, winery lawn</div>
-          </div>
-
-          <div class="item">
-            <div class="time">5:30p (optional)</div>
-            <div class="title">Dinner – Cedric’s Tavern (on estate)</div>
-            <div class="meta"><a href='https://www.google.com/maps/search/?api=1&query=Antler+Hill+Village%2C+Asheville%2C+NC+28803' target='_blank'>Antler Hill Village, Asheville, NC 28803</a><span class="dot">•</span>—<span class="dot">•</span>Reserve if dining on estate; otherwise West Asheville</div>
-          </div>
-
-      </section>
-
-      <section class="day">
-        <div class="dayhead">
-          <div class="weekday">Wednesday, August 13</div>
-          <div class="datecode">2025-08-13</div>
-        </div>
-
-          <div class="item">
-            <div class="time">9:30a–12:00p</div>
-            <div class="title">North Carolina Arboretum</div>
-            <div class="meta"><a href='https://www.google.com/maps/search/?api=1&query=100%2F20+Frederick+Law+Olmsted+Way%2C+Asheville%2C+NC+28806' target='_blank'>100/20 Frederick Law Olmsted Way, Asheville, NC 28806</a><span class="dot">•</span>18–22 min<span class="dot">•</span>Parking ~$20/vehicle; stroller-friendly garden loops</div>
-          </div>
-
-          <div class="item">
-            <div class="time">Afternoon (flex)</div>
-            <div class="title">Blue Ridge Parkway Overlooks (optional)</div>
-            <div class="meta"><a href='https://www.google.com/maps/search/?api=1&query=Near+Arboretum%2FBRP+mileposts' target='_blank'>Near Arboretum/BRP mileposts</a><span class="dot">•</span>—<span class="dot">•</span>Short scenic stops; nap back at Airbnb</div>
-          </div>
-
-          <div class="item">
-            <div class="time">5:30p (hold)</div>
-            <div class="title">Dinner – Sierra Nevada Taproom</div>
-            <div class="meta"><a href='https://www.google.com/maps/search/?api=1&query=100+Sierra+Nevada+Way%2C+Mills+River%2C+NC+28732' target='_blank'>100 Sierra Nevada Way, Mills River, NC 28732</a><span class="dot">•</span>25–35 min<span class="dot">•</span>Takes reservations; big outdoor space great for kids</div>
-          </div>
-
-      </section>
-
-      <section class="day">
-        <div class="dayhead">
-          <div class="weekday">Thursday, August 14</div>
-          <div class="datecode">2025-08-14</div>
-        </div>
-
-          <div class="item">
-            <div class="time">7:30–7:45a</div>
-            <div class="title">Depart Airbnb → AVL (return car)</div>
-            <div class="meta"><a href='https://www.google.com/maps/search/?api=1&query=61+Terminal+Dr%2C+Fletcher%2C+NC+28732' target='_blank'>61 Terminal Dr, Fletcher, NC 28732</a><span class="dot">•</span>20–25 min<span class="dot">•</span>AA 5213 departs 10:26a; aim to be at terminal ~8:00a</div>
-          </div>
-
-      </section>
-
-
-      <section class="day">
-        <div class="dayhead alt">
-          <div class="weekday">Rain Backup</div>
-          <div class="datecode">Any day</div>
-        </div>
-
-          <div class="item">
-            <div class="time">10:00a–5:00p</div>
-            <div class="title">Asheville Museum of Science (AMOS)</div>
-            <div class="meta"><a href='https://www.google.com/maps/search/?api=1&query=43+Patton+Ave%2C+Asheville%2C+NC+28801' target='_blank'>43 Patton Ave, Asheville, NC 28801</a><span class="dot">•</span>15–18 min<span class="dot">•</span>Hands-on exhibits; toddler zone</div>
-          </div>
-
-      </section>
-
-  </section>
-
-  <section style="margin-top:18px;">
-    <h2>Travel Details</h2>
-
-  <table class="card">
-    <thead>
-      <tr><th>Day</th><th>Route</th><th>Flight</th><th>Depart</th><th>Arrive</th><th>Seats</th><th>Class</th></tr>
-    </thead>
-    <tbody>
-
-      <tr>
-        <td>Sun, Aug 10</td>
-        <td>DCA → AVL</td>
-        <td>AA 5395 (operated by PSA / American Eagle)</td>
-        <td>5:13 PM</td>
-        <td>6:50 PM</td>
-        <td>1D, 1F, 2D, 2F</td>
-        <td>Business (J)</td>
-      </tr>
-
-      <tr>
-        <td>Thu, Aug 14</td>
-        <td>AVL → DCA</td>
-        <td>AA 5213 (operated by PSA / American Eagle)</td>
-        <td>10:26 AM</td>
-        <td>12:01 PM</td>
-        <td>2D, 2F, 3D, 3F</td>
-        <td>Business (J)</td>
-      </tr>
-
-    </tbody>
+<section id="travel">
+  <h2>Travel</h2>
+  <table class="table">
+    <thead><tr><th>Day</th><th>Route</th><th>Flight</th><th>Depart</th><th>Arrive</th><th>Seats</th><th>Class</th></tr></thead>
+    <tbody><tr><td>Sun, Aug 10</td><td>DCA → AVL</td><td>AA 5395 (PSA/American Eagle)</td><td>5:13 PM</td><td>6:50 PM</td><td>1D, 1F, 2D, 2F</td><td>Business (J)</td></tr><tr><td>Thu, Aug 14</td><td>AVL → DCA</td><td>AA 5213 (PSA/American Eagle)</td><td>10:26 AM</td><td>12:01 PM</td><td>2D, 2F, 3D, 3F</td><td>Business (J)</td></tr></tbody>
   </table>
+</section>
 
-  </section>
-
-  <section style="margin-top:18px;">
-    <h2>Quick Links</h2>
-    <div class="grid">
-      <div class="card"><div class="tag">Airbnb area</div><div class="value"><a target="_blank" href="https://www.google.com/maps/search/?api=1&query=16+Crestview+Ct,+Asheville,+NC+28806">Open in Google Maps</a></div></div>
-      <div class="card"><div class="tag">AVL Airport</div><div class="value"><a target="_blank" href="https://www.google.com/maps/search/?api=1&query=Asheville+Regional+Airport+%28AVL%29%2C+61+Terminal+Dr%2C+Fletcher%2C+NC+28732">Open in Google Maps</a></div></div>
-      <div class="card"><div class="tag">Biltmore House</div><div class="value"><a target="_blank" href="https://www.google.com/maps/search/?api=1&query=1+Lodge+St%2C+Asheville%2C+NC+28803">Open in Google Maps</a></div></div>
-    </div>
-  </section>
+  <section class="footer">Built for your family’s Asheville getaway — have the best time! 🌄</section>
 </main>
 
-<footer>Built for your family’s Asheville getaway — have the best time! 🌄</footer>
+
+<div class="rightcol">
+  <div class="panel">
+    <h2>Trip Info</h2>
+    <div class="kv">
+      <div class="row"><div class="key">Dates</div><div>Aug 10–14, 2025</div></div>
+      <div class="row"><div class="key">Party</div><div>2 adults + 2 kids</div></div>
+      <div class="row"><div class="key">Stay</div><div><a target="_blank" href="https://www.google.com/maps/search/?api=1&query=16+Crestview+Ct%2C+Asheville%2C+NC+28806">Airbnb — 16 Crestview Ct, Asheville, NC 28806</a></div></div>
+      <div class="row"><div class="key">Biltmore</div><div>Biltmore House entry Tue, Aug 12 at 10:45 AM</div></div>
+      <div class="row"><div class="key">CSV</div><div><a href="asheville_itinerary_locations.csv" download>Download</a></div></div>
+    </div>
+  </div>
+
+<section id="weather">
+  <h2>Weather</h2>
+  <div class="wgrid">
+
+    <div class="wcard card">
+      <div class="wicon">⛅️</div>
+      <div class="wday">Sun <span class="dot">•</span> Aug 10</div>
+      <div class="wtemps"><b>75°</b> / 67°</div>
+      <div class="wdesc">Clouds & sun</div>
+    </div>
+
+    <div class="wcard card">
+      <div class="wicon">🌦️</div>
+      <div class="wday">Mon <span class="dot">•</span> Aug 11</div>
+      <div class="wtemps"><b>77°</b> / 65°</div>
+      <div class="wdesc">Humid, a few storms</div>
+    </div>
+
+    <div class="wcard card">
+      <div class="wicon">⛅️</div>
+      <div class="wday">Tue <span class="dot">•</span> Aug 12</div>
+      <div class="wtemps"><b>82°</b> / 64°</div>
+      <div class="wdesc">Mostly cloudy</div>
+    </div>
+
+    <div class="wcard card">
+      <div class="wicon">🌤️</div>
+      <div class="wday">Wed <span class="dot">•</span> Aug 13</div>
+      <div class="wtemps"><b>83°</b> / 63°</div>
+      <div class="wdesc">Clouds & sun</div>
+    </div>
+
+    <div class="wcard card">
+      <div class="wicon">⛈️</div>
+      <div class="wday">Thu <span class="dot">•</span> Aug 14</div>
+      <div class="wtemps"><b>83°</b> / 65°</div>
+      <div class="wdesc">Chance t‑storm</div>
+    </div>
+
+  </div>
+</section>
+
+</div>
+
+</div>
 </body>
 </html>
