@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="title" content="Sabato Asheville 2025 Family Trip" />
   <meta property="og:title" content="Sabato Asheville 2025 Family Trip" />
-  <meta name="description" content="Family trip dashboard for Asheville: itinerary by day, weather, and travel details." />
+  <meta name="description" content="Family trip dashboard for Asheville: itinerary by day, live weather, and travel details." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -17,144 +17,75 @@
       --card:#141824;
       --muted:#aab0c0;
       --text:#f5f7fb;
-      --brand:#88ff65;
-      --brand2:#ff6b6b;
-      --accent:#2a3042;
-      --success:#3ddc97;
-      --warning:#ffd166;
-      --danger:#ef476f;
+      --accent:#1b2236;
       --shadow:0 8px 30px rgba(0,0,0,.35);
       --radius:18px;
+      --line:rgba(255,255,255,.08);
+      --brand:#88ff65;
+      --good:#3ddc97;
+      --warn:#ffd166;
+      --bad:#ef476f;
     }
     *{box-sizing:border-box}
     html,body{height:100%}
-    body{
-      margin:0;
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      background:linear-gradient(180deg,#0b0d12 0%, #0f1422 60%, #0b0d12 100%);
-      color:var(--text);
-    }
+    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:linear-gradient(180deg,#0b0d12 0%, #0f1422 60%, #0b0d12 100%);color:var(--text);}
     a{color:#9ecbff;text-decoration:none}
-    .app{
-      display:grid;
-      grid-template-columns: 280px 1fr;
-      min-height:100vh;
-    }
-    /* Sticky sidebar */
-    .sidebar{
-      position:sticky; top:0;
-      align-self:start;
-      height:100vh;
-      padding:24px 18px;
-      background:radial-gradient(1200px 600px at -200px -200px, #1b2033 0%, #0e1220 60%, #0b0d12 100%);
-      border-right:1px solid rgba(255,255,255,.06);
-    }
-    .brand{
-      display:flex;align-items:center;gap:10px;margin-bottom:22px;
-    }
-    .brand .dot{
-      width:12px;height:12px;border-radius:50%;
-      background:var(--brand);box-shadow:0 0 16px var(--brand);
-    }
+    .app{display:grid;grid-template-columns: 280px 1fr;min-height:100vh;}
+    .sidebar{position:sticky; top:0;align-self:start;height:100vh;padding:24px 18px;background:radial-gradient(1200px 600px at -200px -200px, #1b2033 0%, #0e1220 60%, #0b0d12 100%);border-right:1px solid var(--line);}
+    .brand{display:flex;align-items:center;gap:10px;margin-bottom:22px;}
+    .brand .dot{width:12px;height:12px;border-radius:50%;background:var(--brand);box-shadow:0 0 16px var(--brand);}
     .brand h1{font-size:16px;margin:0;font-weight:700;letter-spacing:.2px}
     .menu{display:flex;flex-direction:column;gap:8px;margin-top:10px}
-    .menu a{
-      display:flex;align-items:center;gap:10px;
-      padding:12px 14px;border-radius:14px;background:transparent;color:var(--muted);
-      transition:.2s ease; font-weight:600;
-    }
+    .menu a{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:14px;background:transparent;color:#c4cbe0;transition:.2s ease;font-weight:600;}
     .menu a.active,.menu a:hover{background:#1a2033;color:var(--text);}
-    .content{
-      padding:0;
-    }
-
-    /* hero */
-    .hero{
-      width:100%;
-      min-height:260px;
-      background:url('https://upload.wikimedia.org/wikipedia/commons/7/7c/Blue_Ridge_Parkway_near_Asheville.jpg') center/cover no-repeat;
-      display:flex;align-items:flex-end;justify-content:space-between;
-      padding:28px 34px;border-bottom:1px solid rgba(255,255,255,.06);
-    }
+    .content{padding:0;}
+    .hero{width:100%;min-height:260px;background:url('https://upload.wikimedia.org/wikipedia/commons/7/7c/Blue_Ridge_Parkway_near_Asheville.jpg') center/cover no-repeat;display:flex;align-items:flex-end;justify-content:space-between;padding:28px 34px;border-bottom:1px solid var(--line);}
     .hero h2{margin:0;font-size:28px;text-shadow:0 6px 18px rgba(0,0,0,.5)}
     .credit{font-size:12px;color:#cbd3e6;opacity:.7}
-    .wrap{
-      padding:26px 34px 80px;
-      display:grid;
-      grid-template-columns: 1.5fr 1fr 1.1fr;
-      gap:26px;
-    }
-    .card{
-      background:linear-gradient(180deg,#161b2a, #101626);
-      border:1px solid rgba(255,255,255,.06);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-      overflow:hidden;
-    }
+    .wrap{padding:26px 34px 80px;display:grid;grid-template-columns: 1.5fr 1fr 1.1fr;gap:26px;}
+    .card{background:linear-gradient(180deg,#161b2a, #101626);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;}
     .card h3{margin:0 0 10px 0;font-size:18px}
     .section{padding:18px 18px 20px}
-    .subtle{color:var(--muted);font-size:13px}
-    .row{display:flex;gap:14px;flex-wrap:wrap}
-    .grid-3{
-      display:grid;grid-template-columns:repeat(3,1fr);gap:16px;
-    }
-
-    /* itinerary cards */
-    .day{
-      padding:16px;border-radius:16px;background:#0f1426;border:1px solid rgba(255,255,255,.06);
-    }
+    .subtle{color:#aab0c0;font-size:13px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .day{padding:16px;border-radius:16px;background:#0f1426;border:1px solid var(--line);}
     .day h4{margin:0 0 8px 0;font-size:16px}
     .pill{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.06);font-size:12px}
     .item{display:flex;gap:12px;align-items:center;margin:10px 0}
-    .item img{width:56px;height:56px;border-radius:12px;object-fit:cover;border:1px solid rgba(255,255,255,.08)}
+    .item img{width:56px;height:56px;border-radius:12px;object-fit:cover;border:1px solid var(--line)}
     .item .meta{font-size:13px;color:#c9cfe1}
     .item .title{font-weight:700;color:#fff}
     .item .time{font-size:12px;color:#aab0c0}
-    .item button{
-      margin-left:auto;background:#1f2740;border:1px solid rgba(255,255,255,.08);
-      color:#cfe1ff;border-radius:10px;padding:8px 10px;cursor:pointer;font-weight:700;
-    }
+    .item button{margin-left:auto;background:#1f2740;border:1px solid var(--line);color:#cfe1ff;border-radius:10px;padding:8px 10px;cursor:pointer;font-weight:700;}
     .item button:hover{filter:brightness(1.1)}
-
-    /* destinations gallery */
     .dest-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-    .dest{position:relative;border-radius:16px;overflow:hidden;background:#0e1422;border:1px solid rgba(255,255,255,.06);cursor:pointer}
+    .dest{position:relative;border-radius:16px;overflow:hidden;background:#0e1422;border:1px solid var(--line);cursor:pointer}
     .dest img{width:100%;height:140px;object-fit:cover;display:block;opacity:.92}
     .dest .info{padding:12px 12px 14px}
     .dest .name{font-weight:800}
     .dest .tag{font-size:12px;color:#c5cbe1}
     .dest:hover img{transform:scale(1.02);transition:.25s ease}
-
-    /* weather */
-    .weather{display:flex;gap:12px;flex-wrap:wrap}
-    .w-card{flex:1 1 120px;background:#0f1526;border-radius:16px;border:1px solid rgba(255,255,255,.06);padding:12px;text-align:center;cursor:pointer}
+    .weather{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+    .w-card{background:#0f1526;border-radius:16px;border:1px solid var(--line);padding:12px;text-align:center;cursor:pointer}
     .w-card h5{margin:6px 0 6px 0}
     .w-card:hover{filter:brightness(1.1)}
-    .temp{font-size:22px;font-weight:800}
+    .temp{font-size:20px;font-weight:800}
     .hi{color:#ffd166}.lo{color:#9ecbff}
-    .icon{font-size:20px}
-
-    /* travel column */
+    .icon{font-size:22px}
     .travel li{margin:8px 0}
-    .travel .badge{background:#1b233a;border:1px solid rgba(255,255,255,.06);padding:6px 10px;border-radius:999px;font-size:12px;color:#d7e3ff}
-
-    /* modal */
+    .travel .badge{background:#1b233a;border:1px solid var(--line);padding:6px 10px;border-radius:999px;font-size:12px;color:#d7e3ff}
     .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;padding:22px;z-index:80}
-    .modal{width:min(780px,94vw);background:#0f1423;border:1px solid rgba(255,255,255,.08);border-radius:18px;box-shadow:var(--shadow);overflow:hidden}
-    .modal-header{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid rgba(255,255,255,.06);background:#121a2e}
+    .modal{width:min(820px,96vw);background:#0f1423;border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);overflow:hidden}
+    .modal-header{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid var(--line);background:#121a2e}
     .modal-body{display:grid;grid-template-columns:220px 1fr;gap:16px;padding:16px}
-    .modal-body img{width:100%;height:160px;object-fit:cover;border-radius:12px;border:1px solid rgba(255,255,255,.08)}
-    .close{background:#1e263f;border:1px solid rgba(255,255,255,.08);color:#fff;border-radius:10px;padding:8px 10px;cursor:pointer;font-weight:800}
+    .modal-body img{width:100%;height:160px;object-fit:cover;border-radius:12px;border:1px solid var(--line)}
+    .close{background:#1e263f;border:1px solid var(--line);color:#fff;border-radius:10px;padding:8px 10px;cursor:pointer;font-weight:800}
     .kv{display:grid;grid-template-columns:110px 1fr;gap:6px 10px;font-size:14px}
     .kv .k{color:#9fb0d9}
     .kv .v a{color:#bfe1ff}
-    .hours{background:#10172a;border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:10px;margin-top:10px;font-size:14px;color:#dbe6ff}
-
-    @media (max-width:1100px){
-      .wrap{grid-template-columns:1fr;gap:18px}
-      .dest-grid{grid-template-columns:repeat(2,1fr)}
-      .modal-body{grid-template-columns:1fr}
-    }
+    .hours{background:#10172a;border:1px solid var(--line);border-radius:12px;padding:10px;margin-top:10px;font-size:14px;color:#dbe6ff}
+    .chart{background:#10172a;border:1px solid var(--line);border-radius:12px;padding:10px;margin-top:10px}
+    @media (max-width:1100px){.wrap{grid-template-columns:1fr;gap:18px}.dest-grid{grid-template-columns:repeat(2,1fr)}.modal-body{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
@@ -178,7 +109,6 @@
     </section>
 
     <div class="wrap" id="itinerary">
-      <!-- Column 1: Itinerary by date -->
       <div class="card">
         <div class="section">
           <h3>Itinerary</h3>
@@ -314,7 +244,6 @@
         </div>
       </div>
 
-      <!-- Column 2: Destinations gallery -->
       <div class="card" id="destinations">
         <div class="section">
           <h3>Destinations</h3>
@@ -322,12 +251,13 @@
         </div>
       </div>
 
-      <!-- Column 3: Weather + Travel -->
       <div>
         <div class="card" id="weather">
           <div class="section">
-            <h3>Weather (Demo)</h3>
+            <h3>Live Weather (Asheville)</h3>
+            <div class="subtle">Tap a day for hourly details.</div>
             <div class="weather" id="weatherRow"></div>
+            <div id="wxError" class="subtle" style="margin-top:10px;display:none">Couldn’t load live weather.</div>
           </div>
         </div>
         <div class="card travel" id="travel" style="margin-top:18px">
@@ -387,140 +317,28 @@
 </div>
 
 <script>
-  // ---------- Places data (addresses/hours/phones/websites) ----------
+  // ----------------- Config -----------------
+  const CONFIG = {
+    // Option A: Put your Google Places API key here, restricted by referrer to sabatodesign.github.io
+    googlePlacesApiKey: '', // e.g. 'AIza...'
+    // Option B: Or deploy the Netlify function (places.js) and set this to your endpoint, e.g. '/.netlify/functions/places'
+    placesProxy: '' // leave blank to disable live hours
+  };
+
+  // ---------- Places data (baseline info) ----------
   const PLACES = [
-    {
-      id:'biltmore-house',
-      name:'Biltmore House',
-      img:'https://upload.wikimedia.org/wikipedia/commons/4/4f/Biltmore_Estate_%28the_house%29.jpg',
-      address:'One Lodge Street, Asheville, NC 28803',
-      phone:'800-411-3812',
-      website:'https://www.biltmore.com/visit/biltmore-estate/biltmore-house/',
-      map:'https://maps.app.goo.gl/7CpsHkL4VdrUJMkP8',
-      hours:'Hours vary by date/season. House entry on your ticket: <b>10:45 AM Tue Aug 12</b>. See Biltmore’s Hours of Operation for current house and grounds times.',
-      note:'Source: biltmore.com'
-    },
-    {
-      id:'stable-cafe',
-      name:'Stable Café (Biltmore)',
-      img:'https://upload.wikimedia.org/wikipedia/commons/6/6c/Biltmore_Estate_-_Stable_Cafe.jpg',
-      address:'1 Approach Rd (near Biltmore House), Asheville, NC 28803',
-      phone:'828-225-6370',
-      website:'https://www.biltmore.com/restaurant/stable-cafe/',
-      map:'https://maps.app.goo.gl/5r6a9b8yqf2Lw5jU8',
-      hours:'Typically open <b>11:00 AM – 2:00 PM</b> for Biltmore Estate guests.',
-      note:'Confirm day-of in the Biltmore app or website.'
-    },
-    {
-      id:'farmyard',
-      name:'Farmyard (Antler Hill Village)',
-      img:'https://upload.wikimedia.org/wikipedia/commons/2/22/Antler_Hill_Village_Biltmore.jpg',
-      address:'Antler Hill Village, One Lodge Street, Asheville, NC 28803',
-      phone:'800-411-3812',
-      website:'https://www.biltmore.com/activity/farmyard-visits/',
-      map:'https://maps.app.goo.gl/1n58gK1Z3gXNv4rV8',
-      hours:'Open daily <b>11:00 AM – 5:00 PM</b> (seasonal adjustments possible).',
-      note:'Included with admission.'
-    },
-    {
-      id:'wnc-nature-center',
-      name:'WNC Nature Center',
-      img:'https://upload.wikimedia.org/wikipedia/commons/5/5a/WNC_Nature_Center_entrance.jpg',
-      address:'75 Gashes Creek Rd, Asheville, NC 28805',
-      phone:'828-259-8092',
-      website:'https://wildwnc.org/plan-your-visit/',
-      map:'https://maps.app.goo.gl/9xYkq6RcwVcX3wVc6',
-      hours:'Open daily <b>10:00 AM – 4:30 PM</b>, last entry 3:30 PM.',
-      note:''
-    },
-    {
-      id:'nc-arboretum',
-      name:'The North Carolina Arboretum',
-      img:'https://upload.wikimedia.org/wikipedia/commons/9/9f/North_Carolina_Arboretum_visitor_center.jpg',
-      address:'100 Frederick Law Olmsted Way, Asheville, NC 28806',
-      phone:'828-665-2492',
-      website:'https://www.ncarboretum.org/plan-a-visit/hours-directions-prices/',
-      map:'https://maps.app.goo.gl/o7kzqLh1kq6pXj6A8',
-      hours:'Property <b>8:00 AM – 9:00 PM</b>; buildings typically <b>9:00 AM – 5:00 PM</b>.',
-      note:'Parking fee applies.'
-    },
-    {
-      id:'brp-visitor-center',
-      name:'Blue Ridge Parkway Visitor Center (MP 384)',
-      img:'https://upload.wikimedia.org/wikipedia/commons/9/9a/Blue_Ridge_Parkway_Visitor_Center_Asheville.jpg',
-      address:'195 Hemphill Knob Rd, Asheville, NC 28803',
-      phone:'828-298-5330',
-      website:'https://www.nps.gov/blri/planyourvisit/blue-ridge-parkway-visitor-center.htm',
-      map:'https://maps.app.goo.gl/8eE6aN2PoFcw4Naw9',
-      hours:'Typically <b>9:00 AM – 5:00 PM</b> (open year-round except major holidays).',
-      note:''
-    },
-    {
-      id:'sierra-nevada',
-      name:'Sierra Nevada Brewing Co. · Mills River',
-      img:'https://upload.wikimedia.org/wikipedia/commons/3/33/SierranevadaNC.jpg',
-      address:'100 Sierra Nevada Way, Mills River, NC 28732',
-      phone:'828-681-5300',
-      website:'https://sierranevada.com/visit/mills-river/taproom',
-      map:'https://maps.app.goo.gl/1i4dYNZxe8DL6U2Q9',
-      hours:'Taproom & Restaurant hours vary; commonly open late morning–evening.',
-      note:'Reservations recommended for peak times.'
-    },
-    {
-      id:'white-duck-downtown',
-      name:'White Duck Taco Shop · Downtown',
-      img:'https://upload.wikimedia.org/wikipedia/commons/f/f7/White_Duck_Taco_sign_Asheville.jpg',
-      address:'12 Biltmore Ave, Asheville, NC 28801',
-      phone:'828-232-9191',
-      website:'https://whiteducktacoshop.com/locations-hours/',
-      map:'https://maps.app.goo.gl/7k3Gz9PS9tQmXWLg6',
-      hours:'Mon–Thu 11:30 AM–8 PM · Fri–Sat 11:30 AM–9 PM · Sun 11:30 AM–8 PM',
-      note:'Hours can change on holidays or events.'
-    },
-    {
-      id:'splasheville',
-      name:'Splasheville (Pack Square Park)',
-      img:'https://upload.wikimedia.org/wikipedia/commons/a/a3/Asheville_Pack_Square_Park_splash_fountain.jpg',
-      address:'80 Court Plaza, Asheville, NC 28801',
-      phone:'828-259-5800',
-      website:'https://www.ashevillenc.gov/service/find-a-pool-or-splasheville-information/',
-      map:'https://maps.app.goo.gl/Qn5y7yPr9j1YGEJY9',
-      hours:'Regular daily hours <b>9:00 AM – 8:30 PM</b>, may close for events or weather.',
-      note:''
-    },
-    {
-      id:'rockys-patton',
-      name:"Rocky's Hot Chicken Shack · West AVL",
-      img:'https://upload.wikimedia.org/wikipedia/commons/9/9f/Rockys_Hot_Chicken_Shack_sign.jpg',
-      address:'1455 Patton Ave, Asheville, NC 28806',
-      phone:'828-575-2260',
-      website:'https://rockyshotchickenshack.com/',
-      map:'https://maps.app.goo.gl/Rg2o3xqYy5EJgJvM8',
-      hours:'Sun–Thu 11 AM–9 PM · Fri–Sat 11 AM–10 PM',
-      note:''
-    },
-    {
-      id:'ingles-smokey-park',
-      name:'Ingles Markets #31 (Smokey Park Hwy)',
-      img:'https://upload.wikimedia.org/wikipedia/commons/7/74/Ingles_Markets_logo.svg',
-      address:'153 Smokey Park Hwy, Asheville, NC 28806',
-      phone:'(828) 667-8331',
-      website:'https://shop.ingles-markets.com/stores/asheville-4',
-      map:'https://maps.app.goo.gl/j7wq3E1pD9nRWSxN9',
-      hours:'Typically 6:00 AM – 11:00 PM',
-      note:''
-    },
-    {
-      id:'avl-airport',
-      name:'Asheville Regional Airport (AVL)',
-      img:'https://upload.wikimedia.org/wikipedia/commons/6/65/Asheville_Regional_Airport_terminal_%28cropped%29.jpg',
-      address:'61 Terminal Dr, Fletcher, NC 28732',
-      phone:'828-209-3660 (Guest Services)',
-      website:'https://flyavl.com/',
-      map:'https://maps.app.goo.gl/GM6R7s3aWFEAHxjS9',
-      hours:'Airport operates 24/7. Arrive 2 hours before departure.',
-      note:''
-    }
+    {id:'biltmore-house',name:'Biltmore House',img:'https://upload.wikimedia.org/wikipedia/commons/4/4f/Biltmore_Estate_%28the_house%29.jpg',address:'One Lodge Street, Asheville, NC 28803',phone:'800-411-3812',website:'https://www.biltmore.com/visit/biltmore-estate/biltmore-house/',map:'https://maps.app.goo.gl/7CpsHkL4VdrUJMkP8',hours:'Hours vary by date/season. House entry on your ticket: <b>10:45 AM Tue Aug 12</b>.'},
+    {id:'stable-cafe',name:'Stable Café (Biltmore)',img:'https://upload.wikimedia.org/wikipedia/commons/6/6c/Biltmore_Estate_-_Stable_Cafe.jpg',address:'1 Approach Rd (near Biltmore House), Asheville, NC 28803',phone:'828-225-6370',website:'https://www.biltmore.com/restaurant/stable-cafe/',map:'https://maps.app.goo.gl/5r6a9b8yqf2Lw5jU8',hours:'Typically 11:00 AM–2:00 PM for Estate guests.'},
+    {id:'farmyard',name:'Farmyard (Antler Hill Village)',img:'https://upload.wikimedia.org/wikipedia/commons/2/22/Antler_Hill_Village_Biltmore.jpg',address:'Antler Hill Village, One Lodge Street, Asheville, NC 28803',phone:'800-411-3812',website:'https://www.biltmore.com/activity/farmyard-visits/',map:'https://maps.app.goo.gl/1n58gK1Z3gXNv4rV8',hours:'Usual 11:00 AM–5:00 PM (seasonal).'},
+    {id:'wnc-nature-center',name:'WNC Nature Center',img:'https://upload.wikimedia.org/wikipedia/commons/5/5a/WNC_Nature_Center_entrance.jpg',address:'75 Gashes Creek Rd, Asheville, NC 28805',phone:'828-259-8092',website:'https://wildwnc.org/plan-your-visit/',map:'https://maps.app.goo.gl/9xYkq6RcwVcX3wVc6',hours:'10:00 AM–4:30 PM, last entry 3:30 PM.'},
+    {id:'nc-arboretum',name:'The North Carolina Arboretum',img:'https://upload.wikimedia.org/wikipedia/commons/9/9f/North_Carolina_Arboretum_visitor_center.jpg',address:'100 Frederick Law Olmsted Way, Asheville, NC 28806',phone:'828-665-2492',website:'https://www.ncarboretum.org/plan-a-visit/hours-directions-prices/',map:'https://maps.app.goo.gl/o7kzqLh1kq6pXj6A8',hours:'Property 8:00 AM–9:00 PM; buildings ~9–5.'},
+    {id:'brp-visitor-center',name:'Blue Ridge Parkway Visitor Center (MP 384)',img:'https://upload.wikimedia.org/wikipedia/commons/9/9a/Blue_Ridge_Parkway_Visitor_Center_Asheville.jpg',address:'195 Hemphill Knob Rd, Asheville, NC 28803',phone:'828-298-5330',website:'https://www.nps.gov/blri/planyourvisit/blue-ridge-parkway-visitor-center.htm',map:'https://maps.app.goo.gl/8eE6aN2PoFcw4Naw9',hours:'Typically 9:00 AM–5:00 PM.'},
+    {id:'sierra-nevada',name:'Sierra Nevada Brewing Co. · Mills River',img:'https://upload.wikimedia.org/wikipedia/commons/3/33/SierranevadaNC.jpg',address:'100 Sierra Nevada Way, Mills River, NC 28732',phone:'828-681-5300',website:'https://sierranevada.com/visit/mills-river/taproom',map:'https://maps.app.goo.gl/1i4dYNZxe8DL6U2Q9',hours:'Taproom hours vary; open late morning–evening.'},
+    {id:'white-duck-downtown',name:'White Duck Taco Shop · Downtown',img:'https://upload.wikimedia.org/wikipedia/commons/f/f7/White_Duck_Taco_sign_Asheville.jpg',address:'12 Biltmore Ave, Asheville, NC 28801',phone:'828-232-9191',website:'https://whiteducktacoshop.com/locations-hours/',map:'https://maps.app.goo.gl/7k3Gz9PS9tQmXWLg6',hours:'Mon–Thu 11:30–8 · Fri–Sat 11:30–9 · Sun 11:30–8'},
+    {id:'splasheville',name:'Splasheville (Pack Square Park)',img:'https://upload.wikimedia.org/wikipedia/commons/a/a3/Asheville_Pack_Square_Park_splash_fountain.jpg',address:'80 Court Plaza, Asheville, NC 28801',phone:'828-259-5800',website:'https://www.ashevillenc.gov/service/find-a-pool-or-splasheville-information/',map:'https://maps.app.goo.gl/Qn5y7yPr9j1YGEJY9',hours:'9:00 AM–8:30 PM (may close for events/weather).'},
+    {id:'rockys-patton',name:"Rocky's Hot Chicken Shack · West AVL",img:'https://upload.wikimedia.org/wikipedia/commons/7/7e/Rockys_Hot_Chicken_Shack_logo.png',address:'1455 Patton Ave, Asheville, NC 28806',phone:'828-575-2260',website:'https://rockyshotchickenshack.com/',map:'https://maps.app.goo.gl/Rg2o3xqYy5EJgJvM8',hours:'Sun–Thu 11–9 · Fri–Sat 11–10'},
+    {id:'ingles-smokey-park',name:'Ingles Markets #31 (Smokey Park Hwy)',img:'https://upload.wikimedia.org/wikipedia/commons/7/74/Ingles_Markets_logo.svg',address:'153 Smokey Park Hwy, Asheville, NC 28806',phone:'828-667-8331',website:'https://shop.ingles-markets.com/stores/asheville-4',map:'https://maps.app.goo.gl/j7wq3E1pD9nRWSxN9',hours:'Typically 6:00 AM–11:00 PM'},
+    {id:'avl-airport',name:'Asheville Regional Airport (AVL)',img:'https://upload.wikimedia.org/wikipedia/commons/6/65/Asheville_Regional_Airport_terminal_%28cropped%29.jpg',address:'61 Terminal Dr, Fletcher, NC 28732',phone:'828-209-3660',website:'https://flyavl.com/',map:'https://maps.app.goo.gl/GM6R7s3aWFEAHxjS9',hours:'24/7 · Arrive 2 hours pre-flight'}
   ];
 
   // Build destinations gallery
@@ -528,23 +346,22 @@
   PLACES.forEach(p => {
     const card = document.createElement('div');
     card.className='dest';
-    card.innerHTML = \`
-      <img src="\${p.img}" alt="\${p.name}">
+    card.innerHTML = `
+      <img src="${p.img}" alt="${p.name}">
       <div class="info">
-        <div class="name">\${p.name}</div>
-        <div class="tag">\${p.address.split(',')[0]}</div>
-      </div>\`;
+        <div class="name">${p.name}</div>
+        <div class="tag">${p.address.split(',')[0]}</div>
+      </div>`;
     card.onclick = ()=> openPlace(p.id);
     grid.appendChild(card);
   });
 
-  // Modal helpers
+  // Place modal
   const pmBg = document.getElementById('placeModalBg');
-  const pmClose = document.getElementById('pmClose');
-  pmClose.onclick = ()=> pmBg.style.display='none';
+  document.getElementById('pmClose').onclick = ()=> pmBg.style.display='none';
   pmBg.onclick = (e)=>{ if(e.target===pmBg) pmBg.style.display='none'; };
 
-  function openPlace(id){
+  async function openPlace(id){
     const p = PLACES.find(x=>x.id===id);
     if(!p) return;
     document.getElementById('pmTitle').textContent = p.name;
@@ -553,63 +370,171 @@
     document.getElementById('pmPhone').textContent = p.phone;
     document.getElementById('pmLink').href = p.website;
     document.getElementById('pmMap').href = p.map;
-    document.getElementById('pmHours').innerHTML = p.hours;
-    document.getElementById('pmNote').textContent = p.note || '';
+    document.getElementById('pmHours').innerHTML = p.hours || '';
+    document.getElementById('pmNote').textContent = '';
+
+    // Live Google Places hours (optional)
+    try {
+      const live = await fetchLivePlace(p.name + ' ' + p.address);
+      if(live){
+        const addr = live.formattedAddress || p.address;
+        const phone = live.nationalPhoneNumber || p.phone;
+        const website = live.websiteUri || p.website;
+        document.getElementById('pmAddr').textContent = addr;
+        document.getElementById('pmPhone').textContent = phone || '—';
+        document.getElementById('pmLink').href = website || p.website;
+        const hours = (live.currentOpeningHours && live.currentOpeningHours.weekdayDescriptions)
+          ? '<b>Hours</b><br>' + live.currentOpeningHours.weekdayDescriptions.join('<br>')
+          : (p.hours || '');
+        document.getElementById('pmHours').innerHTML = hours;
+        if(live.regularOpeningHours && live.regularOpeningHours.periods){
+          document.getElementById('pmNote').textContent = 'Live hours via Google Places';
+        }
+      }
+    } catch(e){ /* ignore */ }
+
     pmBg.style.display='flex';
   }
 
-  // Wire itinerary buttons
   document.querySelectorAll('.item button[data-place]').forEach(btn=>{
     btn.addEventListener('click', ()=> openPlace(btn.dataset.place));
   });
 
-  // Weather (demo)
-  const demoWeather = [
-    {day:'Sun 10', icon:'⛅', hi:84, lo:65, precip:20},
-    {day:'Mon 11', icon:'🌦️', hi:82, lo:64, precip:40},
-    {day:'Tue 12', icon:'🌧️', hi:80, lo:66, precip:60},
-    {day:'Wed 13', icon:'⛅', hi:83, lo:65, precip:20},
-    {day:'Thu 14', icon:'☀️', hi:85, lo:64, precip:10},
-  ];
-  const wrow = document.getElementById('weatherRow');
-  demoWeather.forEach(d=>{
-    const el = document.createElement('div');
-    el.className='w-card';
-    el.innerHTML = \`
-      <div class="icon">\${d.icon}</div>
-      <h5>\${d.day}</h5>
-      <div class="temp"><span class="hi">\${d.hi}°</span> / <span class="lo">\${d.lo}°</span></div>
-      <div class="subtle">Precip: \${d.precip}%</div>\`;
-    el.onclick = ()=> openWeather(d);
-    wrow.appendChild(el);
-  });
+  async function fetchLivePlace(textQuery){
+    // If a proxy is configured, use it (serverless hides your key)
+    if(CONFIG.placesProxy){
+      const r = await fetch(CONFIG.placesProxy + '?q=' + encodeURIComponent(textQuery));
+      if(!r.ok) return null;
+      return (await r.json());
+    }
+    // Otherwise, try direct Places API call if a key is present (referrer restricted)
+    if(!CONFIG.googlePlacesApiKey) return null;
+    const url = 'https://places.googleapis.com/v1/places:searchText';
+    const body = {
+      textQuery,
+      languageCode:'en',
+      regionCode:'US'
+    };
+    const r = await fetch(url, {
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json',
+        'X-Goog-Api-Key': CONFIG.googlePlacesApiKey,
+        'X-Goog-FieldMask': 'places.id,places.displayName,places.formattedAddress,places.websiteUri,places.nationalPhoneNumber,places.currentOpeningHours,places.regularOpeningHours'
+      },
+      body: JSON.stringify(body)
+    });
+    if(!r.ok) return null;
+    const data = await r.json();
+    const place = data.places && data.places[0];
+    return place || null;
+  }
 
+  // --------------- Live Weather (Open‑Meteo) ----------------
+  const weatherRow = document.getElementById('weatherRow');
   const wmBg = document.getElementById('weatherModalBg');
   document.getElementById('wmClose').onclick = ()=> wmBg.style.display='none';
   wmBg.onclick = (e)=>{ if(e.target===wmBg) wmBg.style.display='none'; };
 
-  function openWeather(d){
-    const c = document.getElementById('wmContent');
-    c.innerHTML = \`
-      <div style="display:flex;gap:16px;align-items:center;margin-bottom:8px">
-        <div style="font-size:40px">\${d.icon}</div>
-        <div style="font-weight:800;font-size:18px">\${d.day} · High \${d.hi}° / Low \${d.lo}°</div>
-        <div class="subtle">Chance of precip: \${d.precip}%</div>
-      </div>
-      <svg width="100%" height="180" viewBox="0 0 600 180" preserveAspectRatio="none" role="img" aria-label="Hourly temperature chart">
-        <defs>
-          <linearGradient id="grad" x1="0" x2="0" y1="0" y2="1">
-            <stop offset="0%" stop-color="#ffd166" stop-opacity="0.9"/>
-            <stop offset="100%" stop-color="#ffd166" stop-opacity="0.05"/>
-          </linearGradient>
-        </defs>
-        <rect x="0" y="0" width="600" height="180" fill="url(#grad)" opacity="0.12"></rect>
-        <polyline fill="none" stroke="#ffd166" stroke-width="3"
-          points="0,120 100,90 200,70 300,65 400,85 500,110 600,125" />
-      </svg>
-      <div class="subtle">This preview chart is for layout only. I can connect a live weather API if you’d like.</div>
-    \`;
+  const LAT=35.5951, LON=-82.5515, TZ='America/New_York';
+  const START='2025-08-10', END='2025-08-14';
+  const dailyParams='daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_probability_max';
+  const hourlyParams='hourly=temperature_2m,precipitation_probability,weathercode';
+  const url=`https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}&timezone=${encodeURIComponent(TZ)}&start_date=${START}&end_date=${END}&${dailyParams}&${hourlyParams}`;
+
+  const WMO = {
+    0:{t:'Clear',i:'☀️'},1:{t:'Mainly clear',i:'🌤️'},2:{t:'Partly cloudy',i:'⛅'},3:{t:'Overcast',i:'☁️'},
+    45:{t:'Fog',i:'🌫️'},48:{t:'Rime fog',i:'🌫️'},
+    51:{t:'Drizzle',i:'🌦️'},53:{t:'Drizzle',i:'🌦️'},55:{t:'Drizzle',i:'🌦️'},
+    61:{t:'Rain',i:'🌧️'},63:{t:'Rain',i:'🌧️'},65:{t:'Heavy rain',i:'🌧️'},
+    66:{t:'Freezing rain',i:'🌧️'},67:{t:'Freezing rain',i:'🌧️'},
+    71:{t:'Snow',i:'🌨️'},73:{t:'Snow',i:'🌨️'},75:{t:'Snow',i:'🌨️'},
+    80:{t:'Rain showers',i:'🌦️'},81:{t:'Rain showers',i:'🌦️'},82:{t:'Rain showers',i:'🌦️'},
+    95:{t:'Thunderstorm',i:'⛈️'},96:{t:'Thunderstorm',i:'⛈️'},99:{t:'Thunderstorm',i:'⛈️'}
+  };
+
+  function formatDay(d){ const dt=new Date(d+'T00:00:00'); return dt.toLocaleDateString(undefined,{weekday:'short',month:'short',day:'numeric'}); }
+
+  fetch(url).then(r=>r.json()).then(data=>{
+    const d=data.daily;
+    if(!d) throw new Error('no daily');
+    weatherRow.innerHTML='';
+    for(let i=0;i<d.time.length;i++){
+      const code=d.weathercode[i];
+      const meta=WMO[code]||{t:'',i:'🌤️'};
+      const el=document.createElement('div');
+      el.className='w-card';
+      el.innerHTML = `
+        <div class="icon">${meta.i}</div>
+        <h5>${formatDay(d.time[i])}</h5>
+        <div class="temp"><span class="hi">${Math.round(d.temperature_2m_max[i])}°</span> / <span class="lo">${Math.round(d.temperature_2m_min[i])}°</span></div>
+        <div class="subtle">${meta.t} · Rain ${d.precipitation_probability_max[i]??0}%</div>`;
+      el.onclick = ()=> openWeatherDetail(d.time[i], data.hourly);
+      weatherRow.appendChild(el);
+    }
+  }).catch(err=>{
+    document.getElementById('wxError').style.display='block';
+  });
+
+  function openWeatherDetail(day, hourly){
+    const start = new Date(day+'T00:00:00-04:00'); // ET
+    const times=hourly.time;
+    const temps=hourly.temperature_2m;
+    const pops=hourly.precipitation_probability;
+    const codes=hourly.weathercode;
+    const hours=[], tvals=[], pvals=[], icons=[];
+    for(let i=0;i<times.length;i++){
+      const t=new Date(times[i]);
+      if(t.getFullYear()===start.getFullYear() && t.getMonth()===start.getMonth() && t.getDate()===start.getDate()){
+        hours.push(t.getHours());
+        tvals.push(temps[i]);
+        pvals.push(pops[i] ?? 0);
+        icons.push(WMO[codes[i]]?.i || '⛅');
+      }
+    }
+    const title = new Date(day+'T00:00:00').toLocaleDateString(undefined,{weekday:'long',month:'long',day:'numeric'});
+    document.getElementById('wmTitle').textContent = 'Weather — ' + title;
+    const maxT=Math.max(...tvals), minT=Math.min(...tvals);
+    const svgTemp=buildLineChart(hours,tvals,minT-2,maxT+2,'°F');
+    const svgPop=buildBarChart(hours,pvals,0,100,'%');
+    document.getElementById('wmContent').innerHTML = `
+      <div class="chart"><b>Hourly Temperature</b>${svgTemp}</div>
+      <div class="chart"><b>Precipitation Chance</b>${svgPop}</div>`;
     wmBg.style.display='flex';
+  }
+
+  function buildLineChart(x, y, yMin, yMax, unit){
+    const w=760,h=200,pad=34;
+    const xs=(i)=> pad + (i*(w-2*pad)/(x.length-1||1));
+    const ys=(v)=> h-pad - ((v-yMin)/(yMax-yMin||1))*(h-2*pad);
+    const path = y.map((v,i)=> (i?'L':'M') + xs(i) + ',' + ys(v)).join(' ');
+    const ticks = x.map((hr,i)=> `<text x="${xs(i)}" y="${h-10}" fill="#9bb0d0" font-size="10" text-anchor="middle">${(hr%12)||12}${hr<12?'a':'p'}</text>`).join('');
+    return `<svg viewBox="0 0 ${w} ${h}" width="100%" height="${h}">
+      <defs><linearGradient id="g1" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="#ffd166" stop-opacity="0.9"/><stop offset="100%" stop-color="#ffd166" stop-opacity="0.05"/></linearGradient></defs>
+      <rect x="1" y="1" width="${w-2}" height="${h-2}" fill="none" stroke="${'rgba(255,255,255,.06)'}"/>
+      <path d="${path} L ${w-pad},${h-pad} L ${pad},${h-pad} Z" fill="url(#g1)" opacity="0.35"/>
+      <path d="${path}" fill="none" stroke="#ffd166" stroke-width="3" stroke-linecap="round"/>
+      ${y.map((v,i)=> `<circle cx="${xs(i)}" cy="${ys(v)}" r="2.6" fill="#ffd166"/>`).join('')}
+      ${ticks}
+    </svg>`;
+  }
+
+  function buildBarChart(x, y, yMin, yMax, unit){
+    const w=760,h=180,pad=34;
+    const xs=(i)=> pad + (i*(w-2*pad)/(x.length||1));
+    const barW=(w-2*pad)/(x.length||1) - 3;
+    const bars = y.map((v,i)=>{
+      const val=Math.max(0,Math.min(yMax,v));
+      const ht=((val-yMin)/(yMax-yMin||1))*(h-2*pad);
+      const x1=xs(i)+1.5, y1=h-pad-ht;
+      return `<rect x="${x1}" y="${y1}" width="${barW}" height="${ht}" fill="#7aa2ff" opacity="0.85"/>`;
+    }).join('');
+    const ticks = [0,25,50,75,100].map(p=>{
+      const yv= h-pad - ((p-yMin)/(yMax-yMin||1))*(h-2*pad);
+      return `<text x="8" y="${yv+4}" fill="#9bb0d0" font-size="10">${p}${unit}</text><line x1="${pad-4}" x2="${w-pad}" y1="${yv}" y2="${yv}" stroke="${'rgba(255,255,255,.06)'}"/>`;
+    }).join('');
+    const labels = x.map((hr,i)=> `<text x="${xs(i)+barW/2}" y="${h-10}" fill="#9bb0d0" font-size="10" text-anchor="middle">${(hr%12)||12}${hr<12?'a':'p'}</text>`).join('');
+    return `<svg viewBox="0 0 ${w} ${h}" width="100%" height="${h}"><rect x="1" y="1" width="${w-2}" height="${h-2}" fill="none" stroke="${'rgba(255,255,255,.06)'}"/>${ticks}${bars}${labels}</svg>`;
   }
 </script>
 </body>
