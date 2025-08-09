@@ -9,106 +9,90 @@
   <meta property="og:title" content="Sabato Asheville 2025 Family Trip" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --bg:#f6f8ff; --ink:#101426; --muted:#6f7a97; --panel:#ffffff; --border:rgba(18,22,37,.10);
-      --brand:#5865f2; --accent:#00c2a8; --shadow:0 10px 30px rgba(18,22,37,.08), 0 2px 8px rgba(18,22,37,.06);
-      --radius:22px;
-    }
+    :root{ --bg:#f6f8ff; --ink:#101426; --muted:#6f7a97; --panel:#ffffff; --border:rgba(18,22,37,.10);
+           --brand:#5865f2; --accent:#00c2a8; --shadow:0 10px 30px rgba(18,22,37,.08), 0 2px 8px rgba(18,22,37,.06);
+           --radius:22px; }
     *{box-sizing:border-box}
     html,body{margin:0;padding:0;background:radial-gradient(1200px 600px at -5% -5%,#e9f1ff,#f7f9ff 40%,var(--bg)) fixed;color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
-    a{color:#0b74d8;text-decoration:none;border-bottom:1px dashed #0b74d8}
-    a:hover{border-bottom-style:solid}
+    a{color:#0b74d8;text-decoration:none;border-bottom:1px dashed #0b74d8} a:hover{border-bottom-style:solid}
     .layout{width:100%;padding:20px 24px;display:grid;grid-template-columns:300px minmax(0,1fr) 320px;gap:20px}
-    /* Sticky left menu */
     aside.nav{position:sticky;top:0;height:100svh;align-self:start;background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px 14px;overflow:auto}
     .brand{display:flex;align-items:center;gap:12px;font-weight:800;font-size:18px;padding:8px 10px}
     .brand-badge{width:36px;height:36px;border-radius:12px;background:linear-gradient(135deg,var(--brand),#8ea0ff);box-shadow:0 6px 20px rgba(88,101,242,.35)}
     .navgroup{margin-top:8px}
     .navitem{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:12px;margin-bottom:8px;color:inherit;border:1px solid transparent}
-    .navitem.active{background:#fff;border-color:var(--border);box-shadow:var(--shadow)}
-    .navitem:hover{background:#fff}
+    .navitem.active{background:#fff;border-color:var(--border);box-shadow:var(--shadow)} .navitem:hover{background:#fff}
     .badge{background:linear-gradient(135deg,#d1e4ff,#fff);border:1px solid var(--border);padding:6px 10px;border-radius:12px;font-weight:700;color:#103464;display:inline-block;margin:8px 10px}
-
-    /* Main column */
     main .section{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px;margin-bottom:20px}
-    h1{margin:0;font-size:28px;letter-spacing:.2px}
-    h2{margin:0 0 10px 0;font-size:18px}
-    .hero{display:flex;flex-direction:column;gap:12px}
-    .meta{color:var(--muted)}
+    h1{margin:0;font-size:28px;letter-spacing:.2px} h2{margin:0 0 10px 0;font-size:18px}
+    .hero{display:flex;flex-direction:column;gap:12px} .meta{color:var(--muted)}
     .cover{width:100%;height:260px;border-radius:16px;overflow:hidden;box-shadow:var(--shadow)}
     .cover img{width:100%;height:100%;object-fit:cover;display:block}
     .credit{font-size:12px;color:#8b98b7;margin-top:4px}
-    .search{display:flex;gap:10px;margin-top:12px}
-    .search input{flex:1;border:1px solid var(--border);border-radius:12px;padding:10px 12px;background:#fff}
+    .search{display:flex;gap:10px;margin-top:12px} .search input{flex:1;border:1px solid var(--border);border-radius:12px;padding:10px 12px;background:#fff}
     .search button{background:linear-gradient(135deg,var(--brand),#8ea0ff);border:none;border-radius:10px;padding:10px 12px;color:white;font-weight:700;cursor:pointer}
-    .filters{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 2px}
-    .chip{border:1px solid var(--border);border-radius:999px;padding:6px 10px;font-weight:700;font-size:12px;background:#fff;cursor:pointer}
+    .filters{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 2px} .chip{border:1px solid var(--border);border-radius:999px;padding:6px 10px;font-weight:700;font-size:12px;background:#fff;cursor:pointer}
     .chip.active{background:linear-gradient(135deg,#e6fff7,#ffffff);border-color:#d6f7f1;color:#0b3e36}
-
-    /* Cards */
     .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
     .card{background:#fff;border:1px solid var(--border);border-radius:18px;box-shadow:var(--shadow);overflow:hidden;cursor:pointer}
     .thumb{height:180px;overflow:hidden;background:#eef2ff}
     .thumb img{width:100%;height:100%;object-fit:cover;display:block}
-    .thumb img.broken{display:none}
-    .thumb .fallback{height:100%;background:linear-gradient(135deg,#e8ecf8,#ffffff)}
-    .body{padding:12px}
-    .title{font-weight:800}
-    .subtitle{color:#6f7a97;font-size:12px;margin-top:4px}
-    .desc{color:#33416a;font-size:13px;margin-top:6px}
-    .tagrow{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
-    .tag{font-size:11px;border:1px solid var(--border);padding:4px 8px;border-radius:999px;color:#4b5a84;background:#f7f9ff}
-
-    .day{margin-top:10px}
-    .day-head{display:flex;justify-content:space-between;align-items:center;margin:6px 0 8px}
-    .day-head .left{display:flex;align-items:center;gap:8px}
-    .dot{width:10px;height:10px;border-radius:999px;background:var(--accent);box-shadow:0 0 0 6px rgba(0,194,168,.15)}
+    .body{padding:12px} .title{font-weight:800} .subtitle{color:#6f7a97;font-size:12px;margin-top:4px} .desc{color:#33416a;font-size:13px;margin-top:6px}
+    .tagrow{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px} .tag{font-size:11px;border:1px solid var(--border);padding:4px 8px;border-radius:999px;color:#4b5a84;background:#f7f9ff}
+    .day{margin-top:32px} /* more space between days */ 
+    .day-head{display:flex;justify-content:space-between;align-items:center;margin:6px 0 12px}
+    .day-head .left{display:flex;align-items:center;gap:8px} .dot{width:10px;height:10px;border-radius:999px;background:var(--accent);box-shadow:0 0 0 6px rgba(0,194,168,.15)}
     .pill{background:linear-gradient(135deg,#e6fff7,#ffffff);border:1px solid #d6f7f1;color:#0b3e36;padding:6px 10px;border-radius:999px;font-weight:800;font-size:12px;display:inline-block}
-
-    /* Right column */
-    .right{position:sticky;top:0;height:100svh;align-self:start;overflow:auto}
-    .panel{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px;margin-bottom:18px}
-    .flights .fcard{display:grid;grid-template-columns:1fr auto;gap:8px;background:#fff;border:1px solid var(--border);border-radius:14px;padding:12px;margin-bottom:10px;box-shadow:var(--shadow)}
-    .f-route{font-weight:800}
-    .f-sub{color:#6f7a97;font-size:12px}
-    .f-time{font-weight:800;color:#122857}
-    .f-badges{display:flex;gap:6px;flex-wrap:wrap}
-    .kb{background:linear-gradient(135deg,#fff7e6,#fff);border:1px solid #ffe2ad;color:#513a06;padding:4px 8px;border-radius:999px;font-weight:700;font-size:11px}
-
-    /* Weather compact (rows) */
+    .right{position:sticky;top:0;height:100svh;align-self:start;overflow:auto} .panel{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px;margin-bottom:18px}
+    /* Flights (timeline like screenshot) */
+    .conf{background:#eef4ff;border:1px solid #d6e3ff;padding:10px 12px;border-radius:12px;font-weight:700;color:#1a3f96;margin-bottom:10px}
+    .itn .dayblock{border-top:1px solid var(--border);padding-top:14px;margin-top:14px}
+    .itn .dtitle{color:#1556c0;font-weight:800;margin-bottom:8px}
+    .itn .row{display:grid;grid-template-columns:28px 160px 1fr;gap:12px}
+    .itn .rail{display:flex;flex-direction:column;align-items:center;margin-top:2px}
+    .itn .rail .dot{width:8px;height:8px;border-radius:50%;background:#1f2c4d;border:2px solid #cbd6ee}
+    .itn .rail .line{flex:1;width:2px;background:repeating-linear-gradient(#cbd6ee 0 6px, transparent 6px 12px)}
+    .itn .label .code{font-weight:800}
+    .itn .label .city{color:#6f7a97}
+    .itn .label .time{font-weight:800;margin-top:4px}
+    .itn .facts .fn{font-weight:800;margin-bottom:4px}
+    .itn .facts .op{color:#6f7a97}
+    .itn .facts .kv{display:grid;grid-template-columns:auto 1fr;gap:4px 10px;margin-top:10px}
+    .itn .facts .k{color:#6f7a97}
+    /* Weather (rows) */
     .wxgrid{display:grid;grid-template-columns:1fr;gap:8px}
     .wx{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;border:1px solid var(--border);border-radius:14px;background:#fff;box-shadow:var(--shadow);padding:10px;cursor:pointer}
-    .wx .icon{font-size:22px}
-    .wx .hi{font-weight:800}
-    .wx .lo{color:#6f7a97}
-
+    .wx .icon{font-size:22px} .wx .hi{font-weight:800} .wx .lo{color:#6f7a97}
     /* Modals */
-    .modal{position:fixed;inset:0;background:rgba(17,23,40,.5);display:none;align-items:center;justify-content:center;padding:20px;z-index:50}
+    .modal{position:fixed;inset:0;background:rgba(17,23,40,.5);display:none;align-items:center;justify-content:center;padding:20px;z-index:100}
     .modal.show{display:flex}
+    /* Place modal */
+    .place-card{width:min(820px,96vw);background:#fff;color:#0f1425;border-radius:18px;border:1px solid var(--border);box-shadow:var(--shadow);overflow:hidden}
+    .place-head{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-bottom:1px solid var(--border);background:#f7f9ff;position:sticky;top:0;z-index:2}
+    .place-body{display:grid;grid-template-columns:220px 1fr;gap:16px;padding:16px;max-height:70vh;overflow:auto}
+    .place-body img{width:100%;height:220px;object-fit:cover;border-radius:12px;border:1px solid var(--border)}
+    .kv{display:grid;grid-template-columns:110px 1fr;gap:6px 10px;font-size:14px}
+    .k{color:#506089} .v a{color:#0b74d8}
+    .hours{background:#f7f9ff;border:1px solid var(--border);border-radius:12px;padding:10px;margin-top:10px;font-size:14px;color:#22315a}
+    /* Mobile sheet up to large phones */
+    @media (max-width:900px){
+      .place-card{width:100vw;height:96vh;border-radius:18px 18px 0 0;display:flex;flex-direction:column}
+      .place-body{grid-template-columns:1fr;padding:12px;gap:12px;max-height:unset;overflow:auto;flex:1}
+      .place-head{padding:16px 18px}
+      .modal{padding:0}
+    }
+    /* Weather modal */
     .modal-card{width:min(760px,96vw);background:#0f1425;color:#e8edf7;border-radius:18px;border:1px solid rgba(255,255,255,.08);box-shadow:0 20px 60px rgba(0,0,0,.5);padding:16px}
     .modal-head{display:flex;justify-content:space-between;align-items:center}
-    .modal-close{background:#1b2440;border:none;color:#cbd4e6;border-radius:10px;padding:6px 10px;cursor:pointer}
-    .modal-sub{color:#9bb0d0}
-    .modal-chart{background:#121a32;border:1px solid rgba(255,255,255,.06);border-radius:14px;margin-top:10px;padding:10px}
+    .modal-close{background:#1b2440;border:none;color:#cbd4e6;border-radius:10px;padding:10px 14px;cursor:pointer;font-weight:800}
+    .modal-sub{color:#9bb0d0} .modal-chart{background:#121a32;border:1px solid rgba(255,255,255,.06);border-radius:14px;margin-top:10px;padding:10px}
     .chart-title{margin:0 0 6px 0;color:#cbd4e6}
-
-    /* Place modal (light) */
-    .place-card{width:min(820px,96vw);background:#fff;color:#0f1425;border-radius:18px;border:1px solid var(--border);box-shadow:var(--shadow);overflow:hidden}
-    .place-head{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-bottom:1px solid var(--border);background:#f7f9ff}
-    .place-body{display:grid;grid-template-columns:220px 1fr;gap:16px;padding:16px}
-    .place-body img{width:100%;height:160px;object-fit:cover;border-radius:12px;border:1px solid var(--border)}
-    .kv{display:grid;grid-template-columns:110px 1fr;gap:6px 10px;font-size:14px}
-    .k{color:#506089}
-    .v a{color:#0b74d8}
-    .hours{background:#f7f9ff;border:1px solid var(--border);border-radius:12px;padding:10px;margin-top:10px;font-size:14px;color:#22315a}
-
     @media (max-width: 1360px){ .layout{grid-template-columns:280px 1fr 300px} }
     @media (max-width: 980px){ .layout{grid-template-columns:1fr} aside.nav,.right{position:static;height:auto} }
   </style>
 </head>
 <body>
 <div class="layout">
-  <!-- LEFT MENU -->
   <aside class="nav">
     <div class="brand"><div class="brand-badge"></div> Asheville Trip</div>
     <div class="navgroup">
@@ -121,30 +105,14 @@
     <div class="badge">Aug 10–14, 2025</div>
   </aside>
 
-  <!-- MAIN COLUMN -->
   <main id="top">
     <section class="section">
       <div class="hero">
-        <div>
-          <h1>Sabato Asheville 2025 Family Trip</h1>
-          <div class="meta">Airbnb: 16 Crestview Ct · Biltmore entry Tue 10:45 AM</div>
-        </div>
-        <div class="cover">
-          <img src="https://commons.wikimedia.org/wiki/Special:FilePath/2019-07-21%20Green%20Knob%20Overlook%20--%20Blue%20Ridge%20Parkway%20(NC).jpg" alt="Blue Ridge Parkway near Asheville" onerror="this.classList.add('broken');this.closest('.cover').style.background='linear-gradient(135deg,#dfe9ff,#ffffff)';">
-        </div>
+        <div><h1>Sabato Asheville 2025 Family Trip</h1><div class="meta">Airbnb: 16 Crestview Ct · Biltmore entry Tue 10:45 AM</div></div>
+        <div class="cover"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/2019-07-21%20Green%20Knob%20Overlook%20--%20Blue%20Ridge%20Parkway%20(NC).jpg" alt="Blue Ridge Parkway near Asheville" onerror="this.closest('.cover').style.background='linear-gradient(135deg,#dfe9ff,#ffffff)';this.style.display='none';"></div>
         <div class="credit">Hero: Blue Ridge Parkway near Asheville (Wikimedia Commons)</div>
-        <div class="search">
-          <input placeholder="Search your stops or addresses (⌘/Ctrl+F works great)" />
-          <button onclick="window.print()">Print</button>
-        </div>
-        <div class="filters" id="filters">
-          <div class="chip active" data-tag="all">All</div>
-          <div class="chip" data-tag="kids">Kids</div>
-          <div class="chip" data-tag="food">Food</div>
-          <div class="chip" data-tag="outdoors">Outdoors</div>
-          <div class="chip" data-tag="estate">Estate</div>
-          <div class="chip" data-tag="travel">Travel</div>
-        </div>
+        <div class="search"><input placeholder="Search your stops or addresses (⌘/Ctrl+F works great)" /><button onclick="window.print()">Print</button></div>
+        <div class="filters" id="filters"><div class="chip active" data-tag="all">All</div><div class="chip" data-tag="kids">Kids</div><div class="chip" data-tag="food">Food</div><div class="chip" data-tag="outdoors">Outdoors</div><div class="chip" data-tag="estate">Estate</div><div class="chip" data-tag="travel">Travel</div></div>
       </div>
     </section>
 
@@ -152,181 +120,166 @@
       <h2>Explore</h2>
       <div class="grid">
         <div class="card card-item" data-tags="estate kids" data-place="biltmore-house">
-          <div class="thumb">
-            <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Biltmore%20Estate-27527-2.jpg" alt="Biltmore House" onerror="this.classList.add('broken');this.insertAdjacentHTML('afterend','<div class=\'fallback\'></div>')">
-          </div>
-          <div class="body">
-            <div class="title">Biltmore House</div>
-            <div class="subtitle">Tue 10:45 AM</div>
-            <div class="desc">Arrive 45–60 min early to park and reach the House.</div>
-            <div class="tagrow"><span class="tag">Estate</span><span class="tag">Kids</span></div>
-          </div>
+          <div class="thumb"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Biltmore%20Estate-27527-2.jpg" alt="Biltmore House"></div>
+          <div class="body"><div class="title">Biltmore House</div><div class="subtitle">Tue 10:45 AM</div><div class="desc">Arrive 45–60 min early to park and reach the House.</div><div class="tagrow"><span class="tag">Estate</span><span class="tag">Kids</span></div></div>
         </div>
         <div class="card card-item" data-tags="outdoors kids" data-place="nc-arboretum">
-          <div class="thumb">
-            <img src="https://commons.wikimedia.org/wiki/Special:FilePath/North%20Carolina%20Arboretum%20-%20bonsai%20area.JPG" alt="NC Arboretum" onerror="this.classList.add('broken');this.insertAdjacentHTML('afterend','<div class=\'fallback\'></div>')">
-          </div>
-          <div class="body">
-            <div class="title">NC Arboretum</div>
-            <div class="subtitle">Wed AM</div>
-            <div class="desc">Shaded paths & bonsai; parking fee applies.</div>
-            <div class="tagrow"><span class="tag">Outdoors</span><span class="tag">Kids</span></div>
-          </div>
+          <div class="thumb"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/North%20Carolina%20Arboretum%20-%20bonsai%20area.JPG" alt="NC Arboretum"></div>
+          <div class="body"><div class="title">NC Arboretum</div><div class="subtitle">Wed AM</div><div class="desc">Shaded paths & bonsai; parking fee applies.</div><div class="tagrow"><span class="tag">Outdoors</span><span class="tag">Kids</span></div></div>
         </div>
         <div class="card card-item" data-tags="kids outdoors" data-place="splasheville">
-          <div class="thumb">
-            <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Pack%20Square%20Park%20Asheville%201.jpg" alt="Pack Square Park" onerror="this.classList.add('broken');this.insertAdjacentHTML('afterend','<div class=\'fallback\'></div>')">
-          </div>
-          <div class="body">
-            <div class="title">Splasheville (Pack Square)</div>
-            <div class="subtitle">Mon 3–4:30 PM</div>
-            <div class="desc">Free splash pad at Pack Square.</div>
-            <div class="tagrow"><span class="tag">Kids</span><span class="tag">Outdoors</span></div>
-          </div>
+          <div class="thumb"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Pack%20Square%20Park%20Asheville%201.jpg" alt="Pack Square Park"></div>
+          <div class="body"><div class="title">Splasheville (Pack Square)</div><div class="subtitle">Mon 3–4:30 PM</div><div class="desc">Free splash pad at Pack Square.</div><div class="tagrow"><span class="tag">Kids</span><span class="tag">Outdoors</span></div></div>
         </div>
         <div class="card card-item" data-tags="food" data-place="sierra-nevada">
-          <div class="thumb">
-            <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Sierra%20Nevada%20Brewing%20Company%20entrance%2C%20Mills%20River%2C%20North%20Carolina%2C%20May%202017.jpg" alt="Sierra Nevada Taproom" onerror="this.classList.add('broken');this.insertAdjacentHTML('afterend','<div class=\'fallback\'></div>')">
-          </div>
-          <div class="body">
-            <div class="title">Sierra Nevada Taproom</div>
-            <div class="subtitle">Wed Dinner</div>
-            <div class="desc">Huge patio + greenspace; book or join waitlist.</div>
-            <div class="tagrow"><span class="tag">Food</span></div>
-          </div>
+          <div class="thumb"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Sierra%20Nevada%20Brewing%20Company%20entrance%2C%20Mills%20River%2C%20North%20Carolina%2C%20May%202017.jpg" alt="Sierra Nevada Taproom"></div>
+          <div class="body"><div class="title">Sierra Nevada Taproom</div><div class="subtitle">Wed Dinner</div><div class="desc">Huge patio + greenspace; book or join waitlist.</div><div class="tagrow"><span class="tag">Food</span></div></div>
+        </div>
+        <div class="card card-item" data-tags="kids outdoors" data-place="wnc-nature-center">
+          <div class="thumb"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/North%20American%20river%20otter%20at%20WNC%20Nature%20Center.jpg" alt="WNC Nature Center (river otter)" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/5/5a/WNC_Nature_Center_entrance.jpg'"></div>
+          <div class="body"><div class="title">WNC Nature Center</div><div class="subtitle">Alt/Bonus stop</div><div class="desc">Native wildlife exhibits (otters, red wolves, more).</div><div class="tagrow"><span class="tag">Kids</span><span class="tag">Outdoors</span></div></div>
         </div>
       </div>
     </section>
 
     <section id="bydate" class="section">
       <h2>Itinerary by Date</h2>
-
-      <!-- Sun -->
+      <!-- Sunday -->
       <div class="day" id="day-2025-08-10">
         <div class="day-head"><div class="left"><div class="dot"></div><div class="title">Sunday, Aug 10</div></div><div class="pill">Arrival Day</div></div>
         <div class="grid">
           <div class="card card-item" data-tags="travel" data-place="avl-airport">
-            <div class="thumb">
-              <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Asheville%20Regional%20Airport%201.jpg" alt="AVL Airport" onerror="this.classList.add('broken');this.insertAdjacentHTML('afterend','<div class=\'fallback\'></div>')">
-            </div>
+            <div class="thumb"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Asheville%20Regional%20Airport%201.jpg" alt="AVL Airport"></div>
             <div class="body"><div class="title">Arrive AVL — pick up rental car</div><div class="subtitle">Asheville Regional Airport</div><div class="tagrow"><span class="tag">Travel</span></div></div>
           </div>
           <div class="card card-item" data-tags="food" data-place="ingles-smokey-park">
-            <div class="thumb">
-              <img src="https://commons.wikimedia.org/wiki/Special:FilePath/An%20Ingles%20Supermarket%20in%20Asheville.jpg" alt="Ingles Asheville" onerror="this.classList.add('broken');this.insertAdjacentHTML('afterend','<div class=\'fallback\'></div>')">
-            </div>
+            <div class="thumb"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/An%20Ingles%20Supermarket%20in%20Asheville.jpg" alt="Ingles Asheville"></div>
             <div class="body"><div class="title">Groceries — Ingles (Smokey Park Hwy)</div><div class="subtitle">Quick stock-up</div><div class="tagrow"><span class="tag">Food</span></div></div>
           </div>
           <div class="card card-item" data-tags="food" data-place="rockys-patton">
-            <div class="thumb">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Rockys_Hot_Chicken_Shack_logo.png" alt="Rocky's Hot Chicken Shack" onerror="this.classList.add('broken');this.insertAdjacentHTML('afterend','<div class=\'fallback\'></div>')">
-            </div>
+            <div class="thumb"><img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Rockys_Hot_Chicken_Shack_logo.png" alt="Rocky's Hot Chicken Shack"></div>
             <div class="body"><div class="title">Dinner — Rocky’s Hot Chicken Shack</div><div class="subtitle">West Asheville</div><div class="tagrow"><span class="tag">Food</span></div></div>
           </div>
         </div>
       </div>
-
-      <!-- Mon -->
+      <!-- Monday -->
       <div class="day" id="day-2025-08-11">
         <div class="day-head"><div class="left"><div class="dot"></div><div class="title">Monday, Aug 11</div></div><div class="pill">Downtown & Play</div></div>
         <div class="grid">
           <div class="card card-item" data-tags="kids outdoors" data-place="wnc-nature-center">
-            <div class="thumb">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/5/5a/WNC_Nature_Center_entrance.jpg" alt="WNC Nature Center" onerror="this.classList.add('broken');this.insertAdjacentHTML('afterend','<div class=\'fallback\'></div>')">
-            </div>
+            <div class="thumb"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/North%20American%20river%20otter%20at%20WNC%20Nature%20Center.jpg" alt="WNC Nature Center (river otter)" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/5/5a/WNC_Nature_Center_entrance.jpg'"></div>
             <div class="body"><div class="title">WNC Nature Center</div><div class="subtitle">10:00 AM – 1:00 PM</div><div class="tagrow"><span class="tag">Kids</span><span class="tag">Outdoors</span></div></div>
           </div>
           <div class="card card-item" data-tags="food" data-place="white-duck-downtown">
-            <div class="thumb">
-              <img src="https://commons.wikimedia.org/wiki/Special:FilePath/White%20Duck%20Taco.jpg" alt="White Duck Taco" onerror="this.classList.add('broken');this.insertAdjacentHTML('afterend','<div class=\'fallback\'></div>')">
-            </div>
+            <div class="thumb"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/White%20Duck%20Taco.jpg" alt="White Duck Taco"></div>
             <div class="body"><div class="title">Lunch — White Duck Taco (Downtown)</div><div class="subtitle">Kid-friendly</div><div class="tagrow"><span class="tag">Food</span></div></div>
           </div>
           <div class="card card-item" data-tags="kids outdoors" data-place="splasheville">
-            <div class="thumb">
-              <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Pack%20Square%20Park%20Asheville%201.jpg" alt="Pack Square Park" onerror="this.classList.add('broken');this.insertAdjacentHTML('afterend','<div class=\'fallback\'></div>')">
-            </div>
+            <div class="thumb"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Pack%20Square%20Park%20Asheville%201.jpg" alt="Pack Square Park"></div>
             <div class="body"><div class="title">Splasheville (Pack Square)</div><div class="subtitle">3:00 – 4:30 PM</div><div class="tagrow"><span class="tag">Kids</span><span class="tag">Outdoors</span></div></div>
           </div>
         </div>
       </div>
-
-      <!-- Tue -->
+      <!-- Tuesday -->
       <div class="day" id="day-2025-08-12">
         <div class="day-head"><div class="left"><div class="dot"></div><div class="title">Tuesday, Aug 12</div></div><div class="pill">Biltmore Day</div></div>
         <div class="grid">
           <div class="card card-item" data-tags="estate kids" data-place="biltmore-house">
-            <div class="thumb">
-              <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Biltmore%20Estate-27527-2.jpg" alt="Biltmore House" onerror="this.classList.add('broken');this.insertAdjacentHTML('afterend','<div class=\'fallback\'></div>')">
-            </div>
+            <div class="thumb"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Biltmore%20Estate-27527-2.jpg" alt="Biltmore House"></div>
             <div class="body"><div class="title">Biltmore House Entry</div><div class="subtitle">10:45 AM (arrive ~9:45–10:00)</div><div class="tagrow"><span class="tag">Estate</span><span class="tag">Kids</span></div></div>
           </div>
           <div class="card card-item" data-tags="estate kids" data-place="farmyard">
-            <div class="thumb">
-              <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Biltmore%20Winery%202010.jpg" alt="Antler Hill Village" onerror="this.classList.add('broken');this.insertAdjacentHTML('afterend','<div class=\'fallback\'></div>')">
-            </div>
+            <div class="thumb"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Biltmore%20Winery%202010.jpg" alt="Antler Hill Village"></div>
             <div class="body"><div class="title">Antler Hill Village & Farmyard</div><div class="subtitle">Afternoon stroll</div><div class="tagrow"><span class="tag">Estate</span><span class="tag">Kids</span></div></div>
           </div>
         </div>
       </div>
-
-      <!-- Wed -->
+      <!-- Wednesday -->
       <div class="day" id="day-2025-08-13">
         <div class="day-head"><div class="left"><div class="dot"></div><div class="title">Wednesday, Aug 13</div></div><div class="pill">Nature Day</div></div>
         <div class="grid">
           <div class="card card-item" data-tags="outdoors kids" data-place="nc-arboretum">
-            <div class="thumb">
-              <img src="https://commons.wikimedia.org/wiki/Special:FilePath/North%20Carolina%20Arboretum%20-%20bonsai%20area.JPG" alt="NC Arboretum" onerror="this.classList.add('broken');this.insertAdjacentHTML('afterend','<div class=\'fallback\'></div>')">
-            </div>
+            <div class="thumb"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/North%20Carolina%20Arboretum%20-%20bonsai%20area.JPG" alt="NC Arboretum"></div>
             <div class="body"><div class="title">North Carolina Arboretum</div><div class="subtitle">9:30 AM – 12:00 PM</div><div class="tagrow"><span class="tag">Outdoors</span><span class="tag">Kids</span></div></div>
           </div>
           <div class="card card-item" data-tags="outdoors" data-place="brp-visitor-center">
-            <div class="thumb">
-              <img src="https://commons.wikimedia.org/wiki/Special:FilePath/2019-07-21%20Green%20Knob%20Overlook%20--%20Blue%20Ridge%20Parkway%20(NC).jpg" alt="Blue Ridge Parkway" onerror="this.classList.add('broken');this.insertAdjacentHTML('afterend','<div class=\'fallback\'></div>')">
-            </div>
+            <div class="thumb"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/2019-07-21%20Green%20Knob%20Overlook%20--%20Blue%20Ridge%20Parkway%20(NC).jpg" alt="Blue Ridge Parkway"></div>
             <div class="body"><div class="title">Blue Ridge Parkway Overlooks</div><div class="subtitle">Afternoon (flex)</div><div class="tagrow"><span class="tag">Outdoors</span></div></div>
           </div>
           <div class="card card-item" data-tags="food" data-place="sierra-nevada">
-            <div class="thumb">
-              <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Sierra%20Nevada%20Brewing%20Company%20entrance%2C%20Mills%20River%2C%20North%20Carolina%2C%20May%202017.jpg" alt="Sierra Nevada Taproom" onerror="this.classList.add('broken');this.insertAdjacentHTML('afterend','<div class=\'fallback\'></div>')">
-            </div>
+            <div class="thumb"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Sierra%20Nevada%20Brewing%20Company%20entrance%2C%20Mills%20River%2C%20North%20Carolina%2C%20May%202017.jpg" alt="Sierra Nevada Taproom"></div>
             <div class="body"><div class="title">Dinner — Sierra Nevada Taproom</div><div class="subtitle">5:30 PM · Mills River</div><div class="tagrow"><span class="tag">Food</span></div></div>
           </div>
         </div>
       </div>
-
-      <!-- Thu -->
+      <!-- Thursday -->
       <div class="day" id="day-2025-08-14">
         <div class="day-head"><div class="left"><div class="dot"></div><div class="title">Thursday, Aug 14</div></div><div class="pill">Departure</div></div>
         <div class="grid">
           <div class="card card-item" data-tags="travel" data-place="avl-airport">
-            <div class="thumb">
-              <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Asheville%20Regional%20Airport%201.jpg" alt="AVL Airport" onerror="this.classList.add('broken');this.insertAdjacentHTML('afterend','<div class=\'fallback\'></div>')">
-            </div>
+            <div class="thumb"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Asheville%20Regional%20Airport%201.jpg" alt="AVL Airport"></div>
             <div class="body"><div class="title">Fly AVL → DCA — AA 5213</div><div class="subtitle">Departs 10:26 AM (arrive ~8:00)</div><div class="tagrow"><span class="tag">Travel</span></div></div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section" style="font-size:12px;color:#6f7a97">
-      Image credits: Public Domain / Creative Commons via Wikimedia Commons. Placeholders used where CC images are unavailable.
-    </section>
+    <section class="section" style="font-size:12px;color:#6f7a97">Image credits: Public Domain / Creative Commons via Wikimedia Commons.</section>
   </main>
 
-  <!-- RIGHT COLUMN -->
   <div class="right">
-    <div class="panel flights">
+    <section class="panel itn">
+      <div class="conf">Confirmation code: <strong>SCMYOL</strong></div>
       <h2>Flights</h2>
-      <div class="fcard">
-        <div><div class="f-route">DCA → AVL</div><div class="f-sub">AA 5395 (Sun, Aug 10)</div></div>
-        <div style="text-align:right"><div class="f-time">Check app for exact time</div><div class="f-sub">Arrival Day</div></div>
+
+      <div class="dayblock">
+        <div class="dtitle">Sunday, August 10, 2025</div>
+        <div class="row">
+          <div class="rail"><div class="dot"></div><div class="line"></div><div class="dot"></div></div>
+          <div class="label">
+            <div class="code">DCA</div>
+            <div class="city">Washington Reagan</div>
+            <div class="time">5:13 PM</div>
+            <div style="height:12px"></div>
+            <div class="code">AVL</div>
+            <div class="city">Asheville</div>
+            <div class="time">6:50 PM</div>
+          </div>
+          <div class="facts">
+            <div class="fn">AA 5395</div>
+            <div class="op">Operated by PSA Airlines as American Eagle</div>
+            <div class="kv" style="margin-top:12px">
+              <div class="k">Seat:</div><div>1D, 1F, 2D, 2F</div>
+              <div class="k">Class:</div><div>Business (J)</div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="fcard">
-        <div><div class="f-route">AVL → DCA</div><div class="f-sub">AA 5213 (Thu, Aug 14)</div></div>
-        <div style="text-align:right"><div class="f-time">Departs 10:26 AM</div><div class="f-sub">Arrive 2 hrs early</div></div>
+
+      <div class="dayblock">
+        <div class="dtitle">Thursday, August 14, 2025</div>
+        <div class="row">
+          <div class="rail"><div class="dot"></div><div class="line"></div><div class="dot"></div></div>
+          <div class="label">
+            <div class="code">AVL</div>
+            <div class="city">Asheville</div>
+            <div class="time">10:26 AM</div>
+            <div style="height:12px"></div>
+            <div class="code">DCA</div>
+            <div class="city">Washington Reagan</div>
+            <div class="time">12:01 PM</div>
+          </div>
+          <div class="facts">
+            <div class="fn">AA 5213</div>
+            <div class="op">Operated by PSA Airlines as American Eagle</div>
+            <div class="kv" style="margin-top:12px">
+              <div class="k">Seat:</div><div>2D, 2F, 3D, 3F</div>
+              <div class="k">Class:</div><div>Business (J)</div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
 
     <section id="weather" class="panel">
       <h2>Weather (Live)</h2>
@@ -337,13 +290,10 @@
   </div>
 </div>
 
-<!-- Place modal -->
+<!-- Modals -->
 <div class="modal" id="placeModal" aria-hidden="true">
   <div class="place-card">
-    <div class="place-head">
-      <div id="pmTitle" style="font-weight:800">Place</div>
-      <button class="modal-close" onclick="closePlace()">Close ✕</button>
-    </div>
+    <div class="place-head"><div id="pmTitle" style="font-weight:800">Place</div><button class="modal-close" onclick="closePlace()">Close ✕</button></div>
     <div class="place-body">
       <img id="pmImg" alt="Place image"/>
       <div>
@@ -353,37 +303,23 @@
           <div class="k">Website</div><div class="v"><a id="pmLink" target="_blank" rel="noopener">Open site ↗</a></div>
           <div class="k">Map</div><div class="v"><a id="pmMap" target="_blank" rel="noopener">Open in Maps ↗</a></div>
         </div>
-        <div class="hours" id="pmHours"></div>
-        <div class="meta" id="pmNote" style="margin-top:8px;color:#6f7a97"></div>
+        <div class="hours" id="pmHours"></div><div class="meta" id="pmNote" style="margin-top:8px;color:#6f7a97"></div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Weather modal -->
 <div class="modal" id="wxModal" aria-hidden="true">
   <div class="modal-card">
-    <div class="modal-head">
-      <div>
-        <div id="wxTitle" style="font-weight:800;font-size:18px">Day</div>
-        <div id="wxSub" class="modal-sub">Details</div>
-      </div>
-      <button class="modal-close" onclick="closeWx()">Close ✕</button>
-    </div>
-    <div class="modal-chart">
-      <h4 class="chart-title">Hourly Temperature (°F)</h4>
-      <div id="tempChart"></div>
-    </div>
-    <div class="modal-chart">
-      <h4 class="chart-title">Chance of Precipitation</h4>
-      <div id="precipChart"></div>
-    </div>
+    <div class="modal-head"><div><div id="wxTitle" style="font-weight:800;font-size:18px">Day</div><div id="wxSub" class="modal-sub">Details</div></div><button class="modal-close" onclick="closeWx()">Close ✕</button></div>
+    <div class="modal-chart"><h4 class="chart-title">Hourly Temperature (°F)</h4><div id="tempChart"></div></div>
+    <div class="modal-chart"><h4 class="chart-title">Chance of Precipitation</h4><div id="precipChart"></div></div>
     <div class="modal-sub" style="margin-top:8px">Powered by Open‑Meteo.</div>
   </div>
 </div>
 
 <script>
-  // Smooth filter chips
+  // Filters
   const chips=[...document.querySelectorAll('.chip')];
   function applyFilter(tag){
     const cards=[...document.querySelectorAll('.card-item')];
@@ -392,132 +328,76 @@
   }
   chips.forEach(ch=>ch.addEventListener('click',()=>{ chips.forEach(c=>c.classList.remove('active')); ch.classList.add('active'); applyFilter(ch.dataset.tag); }));
 
-  // ----- Places data (baseline) -----
-  const PLACES = [
+  // Places
+  const PLACES=[
     {id:'biltmore-house',name:'Biltmore House',img:'https://commons.wikimedia.org/wiki/Special:FilePath/Biltmore%20Estate-27527-2.jpg',address:'One Lodge Street, Asheville, NC 28803',phone:'800-411-3812',website:'https://www.biltmore.com/visit/biltmore-estate/biltmore-house/',map:'https://maps.app.goo.gl/7CpsHkL4VdrUJMkP8',hours:'Ticketed entry at <b>10:45 AM Tue</b>. Grounds/hours vary.'},
     {id:'nc-arboretum',name:'The North Carolina Arboretum',img:'https://commons.wikimedia.org/wiki/Special:FilePath/North%20Carolina%20Arboretum%20-%20bonsai%20area.JPG',address:'100 Frederick Law Olmsted Way, Asheville, NC 28806',phone:'828-665-2492',website:'https://www.ncarboretum.org/plan-a-visit/hours-directions-prices/',map:'https://maps.app.goo.gl/o7kzqLh1kq6pXj6A8',hours:'Property 8:00 AM – 9:00 PM; buildings ~9–5.'},
     {id:'splasheville',name:'Splasheville (Pack Square Park)',img:'https://commons.wikimedia.org/wiki/Special:FilePath/Pack%20Square%20Park%20Asheville%201.jpg',address:'80 Court Plaza, Asheville, NC 28801',phone:'828-259-5800',website:'https://www.ashevillenc.gov/service/find-a-pool-or-splasheville-information/',map:'https://maps.app.goo.gl/Qn5y7yPr9j1YGEJY9',hours:'Daily 9:00 AM – 8:30 PM (may close for events/weather).'},
     {id:'sierra-nevada',name:'Sierra Nevada Brewing Co. · Mills River',img:'https://commons.wikimedia.org/wiki/Special:FilePath/Sierra%20Nevada%20Brewing%20Company%20entrance%2C%20Mills%20River%2C%20North%20Carolina%2C%20May%202017.jpg',address:'100 Sierra Nevada Way, Mills River, NC 28732',phone:'828-681-5300',website:'https://sierranevada.com/visit/mills-river/taproom',map:'https://maps.app.goo.gl/1i4dYNZxe8DL6U2Q9',hours:'Taproom hours vary—check current waitlist/reservations.'},
-    {id:'wnc-nature-center',name:'WNC Nature Center',img:'https://upload.wikimedia.org/wikipedia/commons/5/5a/WNC_Nature_Center_entrance.jpg',address:'75 Gashes Creek Rd, Asheville, NC 28805',phone:'828-259-8092',website:'https://wildwnc.org/plan-your-visit/',map:'https://maps.app.goo.gl/9xYkq6RcwVcX3wVc6',hours:'10:00 AM – 4:30 PM (last entry 3:30 PM).'},
+    {id:'wnc-nature-center',name:'WNC Nature Center',img:'https://commons.wikimedia.org/wiki/Special:FilePath/North%20American%20river%20otter%20at%20WNC%20Nature%20Center.jpg',address:'75 Gashes Creek Rd, Asheville, NC 28805',phone:'828-259-8092',website:'https://wildwnc.org/plan-your-visit/',map:'https://maps.app.goo.gl/9xYkq6RcwVcX3wVc6',hours:'10:00 AM – 4:30 PM (last entry 3:30 PM).'},
     {id:'brp-visitor-center',name:'Blue Ridge Parkway Visitor Center (MP 384)',img:'https://commons.wikimedia.org/wiki/Special:FilePath/2019-07-21%20Green%20Knob%20Overlook%20--%20Blue%20Ridge%20Parkway%20(NC).jpg',address:'195 Hemphill Knob Rd, Asheville, NC 28803',phone:'828-298-5330',website:'https://www.nps.gov/blri/planyourvisit/blue-ridge-parkway-visitor-center.htm',map:'https://maps.app.goo.gl/8eE6aN2PoFcw4Naw9',hours:'Typically 9:00 AM – 5:00 PM.'},
     {id:'avl-airport',name:'Asheville Regional Airport (AVL)',img:'https://commons.wikimedia.org/wiki/Special:FilePath/Asheville%20Regional%20Airport%201.jpg',address:'61 Terminal Dr, Fletcher, NC 28732',phone:'828-209-3660',website:'https://flyavl.com/',map:'https://maps.app.goo.gl/GM6R7s3aWFEAHxjS9',hours:'Open 24/7; arrive 2 hrs pre-flight.'},
     {id:'ingles-smokey-park',name:'Ingles Markets (Smokey Park Hwy)',img:'https://commons.wikimedia.org/wiki/Special:FilePath/An%20Ingles%20Supermarket%20in%20Asheville.jpg',address:'153 Smokey Park Hwy, Asheville, NC 28806',phone:'828-667-8331',website:'https://shop.ingles-markets.com/stores/asheville-4',map:'https://maps.app.goo.gl/j7wq3E1pD9nRWSxN9',hours:'Typically 6:00 AM – 11:00 PM'},
     {id:'white-duck-downtown',name:'White Duck Taco Shop (Downtown)',img:'https://commons.wikimedia.org/wiki/Special:FilePath/White%20Duck%20Taco.jpg',address:'12 Biltmore Ave, Asheville, NC 28801',phone:'828-232-9191',website:'https://whiteducktacoshop.com/locations-hours/',map:'https://maps.app.goo.gl/7k3Gz9PS9tQmXWLg6',hours:'Most days ~11:30 AM – 8/9 PM.'},
     {id:'farmyard',name:'Farmyard (Antler Hill Village)',img:'https://commons.wikimedia.org/wiki/Special:FilePath/Biltmore%20Winery%202010.jpg',address:'One Lodge Street (Antler Hill Village), Asheville, NC 28803',phone:'800-411-3812',website:'https://www.biltmore.com/activity/farmyard-visits/',map:'https://maps.app.goo.gl/1n58gK1Z3gXNv4rV8',hours:'Open daily ~11:00 AM – 5:00 PM (seasonal).'}
   ];
-
-  // Open place modal from any card
-  document.querySelectorAll('.card-item').forEach(c=>{
-    c.addEventListener('click',()=>{
-      const id=c.getAttribute('data-place');
-      if(id) openPlace(id);
-    });
-  });
-
+  document.querySelectorAll('.card-item').forEach(c=>c.addEventListener('click',()=>{const id=c.getAttribute('data-place'); if(id) openPlace(id);}));
   const placeModal=document.getElementById('placeModal');
   function openPlace(id){
     const p=PLACES.find(x=>x.id===id); if(!p) return;
-    document.getElementById('pmTitle').textContent=p.name;
-    document.getElementById('pmImg').src=p.img;
-    document.getElementById('pmAddr').textContent=p.address;
-    document.getElementById('pmPhone').textContent=p.phone||'—';
-    document.getElementById('pmLink').href=p.website;
-    document.getElementById('pmMap').href=p.map;
-    document.getElementById('pmHours').innerHTML=p.hours||'';
-    document.getElementById('pmNote').textContent='';
-    placeModal.classList.add('show'); placeModal.setAttribute('aria-hidden','false');
+    pmTitle.textContent=p.name; pmImg.src=p.img; pmAddr.textContent=p.address; pmPhone.textContent=p.phone||'—';
+    pmLink.href=p.website; pmMap.href=p.map; pmHours.innerHTML=p.hours||''; pmNote.textContent='';
+    placeModal.classList.add('show'); placeModal.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden';
   }
-  function closePlace(){ placeModal.classList.remove('show'); placeModal.setAttribute('aria-hidden','true'); }
+  function closePlace(){ placeModal.classList.remove('show'); placeModal.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
   placeModal.addEventListener('click',(e)=>{ if(e.target===placeModal) closePlace(); });
 
-  // ----- Live Weather (Open-Meteo) as ROWS -----
-  const wxgrid=document.getElementById('wxgrid');
-  const LAT=35.5951, LON=-82.5515, TZ='America/New_York';
+  // Weather
+  const wxgrid=document.getElementById('wxgrid'); const LAT=35.5951, LON=-82.5515, TZ='America/New_York';
   const START='2025-08-10', END='2025-08-14';
   const daily='daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_probability_max';
   const hourly='hourly=temperature_2m,precipitation_probability,weathercode';
-  const url=`https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}&timezone=${encodeURIComponent(TZ)}&start_date=${START}&end_date=${END}&${daily}&${hourly}`;
+  const url='https://api.open-meteo.com/v1/forecast?latitude='+LAT+'&longitude='+LON+'&timezone='+encodeURIComponent(TZ)+'&start_date='+START+'&end_date='+END+'&'+daily+'&'+hourly;
 
   const WMO={0:{t:'Clear',i:'☀️'},1:{t:'Mainly clear',i:'🌤️'},2:{t:'Partly cloudy',i:'⛅'},3:{t:'Overcast',i:'☁️'},45:{t:'Fog',i:'🌫️'},48:{t:'Rime fog',i:'🌫️'},51:{t:'Drizzle',i:'🌦️'},53:{t:'Drizzle',i:'🌦️'},55:{t:'Drizzle',i:'🌦️'},61:{t:'Rain',i:'🌧️'},63:{t:'Rain',i:'🌧️'},65:{t:'Heavy rain',i:'🌧️'},66:{t:'Freezing rain',i:'🌧️'},67:{t:'Freezing rain',i:'🌧️'},71:{t:'Snow',i:'🌨️'},73:{t:'Snow',i:'🌨️'},75:{t:'Snow',i:'🌨️'},80:{t:'Showers',i:'🌦️'},81:{t:'Showers',i:'🌦️'},82:{t:'Showers',i:'🌦️'},95:{t:'T-storm',i:'⛈️'},96:{t:'T-storm',i:'⛈️'},99:{t:'T-storm',i:'⛈️'}};
   function fmtDay(d){ const dt=new Date(d+'T00:00:00'); return dt.toLocaleDateString(undefined,{weekday:'short',month:'short',day:'numeric'}); }
 
   fetch(url).then(r=>r.json()).then(data=>{
-    const d=data.daily; if(!d) throw 0;
-    wxgrid.innerHTML='';
+    const d=data.daily; if(!d) throw 0; wxgrid.innerHTML='';
     for(let i=0;i<d.time.length;i++){
       const code=d.weathercode[i]; const meta=WMO[code]||{t:'',i:'⛅'};
       const el=document.createElement('div'); el.className='wx';
-      el.innerHTML=`<div class="icon">${meta.i}</div>
-        <div><div class="title">${fmtDay(d.time[i])}</div><div class="subtitle">${meta.t} · Rain ${d.precipitation_probability_max[i]??0}%</div></div>
-        <div><span class="hi">${Math.round(d.temperature_2m_max[i])}°</span> <span class="lo">/ ${Math.round(d.temperature_2m_min[i])}°</span></div>`;
+      el.innerHTML='<div class="icon">'+meta.i+'</div><div><div class="title">'+fmtDay(d.time[i])+'</div><div class="subtitle">'+meta.t+' · Rain '+(d.precipitation_probability_max[i]??0)+'%</div></div><div><span class="hi">'+Math.round(d.temperature_2m_max[i])+'°</span> <span class="lo">/ '+Math.round(d.temperature_2m_min[i])+'°</span></div>';
       el.addEventListener('click',()=> openWx(d.time[i], data.hourly));
       wxgrid.appendChild(el);
     }
   }).catch(_=>{ document.getElementById('wxError').style.display='block'; });
 
-  // Weather modal + charts
+  // Weather modal
   const wxModal=document.getElementById('wxModal');
   function openWx(day, hourly){
-    const start=new Date(day+'T00:00:00-04:00');
-    const T=hourly.time, H=hourly.temperature_2m, P=hourly.precipitation_probability, C=hourly.weathercode;
+    const start=new Date(day+'T00:00:00-04:00'); const T=hourly.time, H=hourly.temperature_2m, P=hourly.precipitation_probability;
     const hrs=[], tvals=[], pvals=[];
-    for(let i=0;i<T.length;i++){
-      const t=new Date(T[i]);
-      if(t.getFullYear()===start.getFullYear() && t.getMonth()===start.getMonth() && t.getDate()===start.getDate()){
-        hrs.push(t.getHours()); tvals.push(H[i]); pvals.push(P[i]??0);
-      }
-    }
+    for(let i=0;i<T.length;i++){ const t=new Date(T[i]); if(t.getFullYear()===start.getFullYear() && t.getMonth()===start.getMonth() && t.getDate()===start.getDate()){ hrs.push(t.getHours()); tvals.push(H[i]); pvals.push(P[i]??0);}}
     const title=new Date(day+'T00:00:00').toLocaleDateString(undefined,{weekday:'long',month:'long',day:'numeric'});
-    document.getElementById('wxTitle').textContent=title;
-    document.getElementById('wxSub').textContent='Hourly forecast';
-    drawTemp('#tempChart', tvals, hrs);
-    drawPrecip('#precipChart', pvals, hrs);
-    wxModal.classList.add('show'); wxModal.setAttribute('aria-hidden','false');
+    document.getElementById('wxTitle').textContent=title; document.getElementById('wxSub').textContent='Hourly forecast';
+    drawTemp('#tempChart', tvals, hrs); drawPrecip('#precipChart', pvals, hrs);
+    wxModal.classList.add('show'); wxModal.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden';
   }
-  function closeWx(){ wxModal.classList.remove('show'); wxModal.setAttribute('aria-hidden','true'); }
+  function closeWx(){ wxModal.classList.remove('show'); wxModal.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
 
   function drawTemp(sel, arr, hrs){
-    const w=720,h=180,pad=28;
-    const min=Math.min(...arr)-2, max=Math.max(...arr)+2;
-    const xstep=(w-2*pad)/(arr.length-1||1);
-    const points=arr.map((v,i)=>[pad+i*xstep, h-pad - ( (v-min)/(max-min||1) )*(h-2*pad) ]);
-    const path='M '+points.map(p=>p.join(',')).join(' L ');
-    const area = path + ` L ${w-pad},${h-pad} L ${pad},${h-pad} Z`;
-    const ticks = hrs.map((hr,i)=>{
-      const x=pad+i*xstep; const lab=((hr%12)||12)+(hr<12?'a':'p'); return `<text x="${x}" y="${h-6}" fill="#9bb0d0" font-size="10" text-anchor="middle">${lab}</text>`;
-    }).join('');
-    document.querySelector(sel).innerHTML = `
-      <svg viewBox="0 0 ${w} ${h}" width="100%" height="${h}">
-        <defs><linearGradient id="g" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="#ffd166" stop-opacity="0.8"/><stop offset="100%" stop-color="#ffd166" stop-opacity="0.05"/></linearGradient></defs>
-        <rect x="1" y="1" width="${w-2}" height="${h-2}" fill="none" stroke="rgba(255,255,255,.06)"/>
-        <path d="${area}" fill="url(#g)" stroke="none"/>
-        <path d="${path}" fill="none" stroke="#ff9f1c" stroke-width="3" stroke-linecap="round" />
-        ${points.map(p=>`<circle cx="${p[0]}" cy="${p[1]}" r="2.8" fill="#ff9f1c"/>`).join('')}
-        ${ticks}
-      </svg>`;
+    const w=720,h=180,pad=28, min=Math.min(...arr)-2, max=Math.max(...arr)+2, xstep=(w-2*pad)/((arr.length-1)||1);
+    const points=arr.map((v,i)=>[pad+i*xstep, h-pad - (((v-min)/(max-min||1))*(h-2*pad))]); const path='M '+points.map(p=>p.join(',')).join(' L ');
+    const area=path+' L '+(w-pad)+','+(h-pad)+' L '+pad+','+(h-pad)+' Z'; const ticks=hrs.map((hr,i)=>{const x=pad+i*xstep; const lab=((hr%12)||12)+(hr<12?'a':'p'); return '<text x="'+x+'" y="'+(h-6)+'" fill="#9bb0d0" font-size="10" text-anchor="middle">'+lab+'</text>';}).join('');
+    document.querySelector(sel).innerHTML='<svg viewBox="0 0 '+w+' '+h+'" width="100%" height="'+h+'"><defs><linearGradient id="g" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="#ffd166" stop-opacity="0.8"/><stop offset="100%" stop-color="#ffd166" stop-opacity="0.05"/></linearGradient></defs><rect x="1" y="1" width="'+(w-2)+'" height="'+(h-2)+'" fill="none" stroke="rgba(255,255,255,.06)"/><path d="'+area+'" fill="url(#g)" stroke="none"/><path d="'+path+'" fill="none" stroke="#ff9f1c" stroke-width="3" stroke-linecap="round" />'+points.map(p=>'<circle cx="'+p[0]+'" cy="'+p[1]+'" r="2.8" fill="#ff9f1c"/>').join('')+ticks+'</svg>';
   }
   function drawPrecip(sel, arr, hrs){
-    const w=720,h=160,pad=28;
-    const xstep=(w-2*pad)/(arr.length||1);
-    const bars=arr.map((v,i)=>{
-      const ht=((v)/100)*(h-2*pad); const x=pad+i*xstep+3; const y=h-pad-ht;
-      return `<rect x="${x}" y="${y}" width="${xstep-6}" height="${ht}" fill="#5865f2" opacity="0.85"/>`;
-    }).join('');
-    const yTicks=[0,25,50,75,100].map(p=>{
-      const y=h-pad - (p/100)*(h-2*pad);
-      return `<text x="8" y="${y+4}" fill="#9bb0d0" font-size="10">${p}%</text>
-              <line x1="${pad-4}" x2="${w-pad}" y1="${y}" y2="${y}" stroke="rgba(255,255,255,.06)"/>`;
-    }).join('');
-    const xTicks=hrs.map((hr,i)=>{
-      const x=pad+i*xstep+((xstep-6)/2); const lab=((hr%12)||12)+(hr<12?'a':'p'); return `<text x="${x}" y="${h-6}" fill="#9bb0d0" font-size="10" text-anchor="middle">${lab}</text>`;
-    }).join('');
-    document.querySelector(sel).innerHTML = `
-      <svg viewBox="0 0 ${w} ${h}" width="100%" height="${h}">
-        <rect x="1" y="1" width="${w-2}" height="${h-2}" fill="none" stroke="rgba(255,255,255,.06)"/>
-        ${yTicks}
-        ${bars}
-        ${xTicks}
-      </svg>`;
+    const w=720,h=160,pad=28,xstep=(w-2*pad)/((arr.length)||1);
+    const bars=arr.map((v,i)=>{const ht=((v)/100)*(h-2*pad), x=pad+i*xstep+3, y=h-pad-ht; return '<rect x="'+x+'" y="'+y+'" width="'+(xstep-6)+'" height="'+ht+'" fill="#5865f2" opacity="0.85"/>';}).join('');
+    const yTicks=[0,25,50,75,100].map(p=>{const y=h-pad - (p/100)*(h-2*pad); return '<text x="8" y="'+(y+4)+'" fill="#9bb0d0" font-size="10">'+p+'%</text><line x1="'+(pad-4)+'" x2="'+(w-pad)+'" y1="'+y+'" y2="'+y+'" stroke="rgba(255,255,255,.06)"/>';}).join('');
+    const xTicks=hrs.map((hr,i)=>{const x=pad+i*xstep+((xstep-6)/2), lab=((hr%12)||12)+(hr<12?'a':'p'); return '<text x="'+x+'" y="'+(h-6)+'" fill="#9bb0d0" font-size="10" text-anchor="middle">'+lab+'</text>';}).join('');
+    document.querySelector(sel).innerHTML='<svg viewBox="0 0 '+w+' '+h+'" width="100%" height="'+h+'"><rect x="1" y="1" width="'+(w-2)+'" height="'+(h-2)+'" fill="none" stroke="rgba(255,255,255,.06)"/>'+yTicks+bars+xTicks+'</svg>';
   }
 </script>
 </body>
