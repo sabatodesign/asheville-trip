@@ -1,290 +1,338 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Asheville Trip Dashboard</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<title>Asheville Trip — Figma-Style v11</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #0b1020;
-    --panel: #12172a;
-    --panel-2: #0f1425;
-    --primary: #9BE15D;
-    --primary-2: #21D4FD;
-    --muted: #93a2b7;
-    --text: #e9eef7;
-    --accent: #ffd166;
-    --danger: #ef476f;
-    --ok: #2dd4bf;
-    --card: #121a32;
-    --radius: 18px;
-    --shadow: 0 10px 30px rgba(0,0,0,.4);
-  }
-  * { box-sizing:border-box }
-  html, body { height:100% }
-  body {
-    margin:0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-    color: var(--text); background: radial-gradient(1200px 600px at -10% -10%, #152040 20%, #0b1020 60%);
-  }
-  .app {
-    max-width: 1240px; margin: 28px auto 60px; padding: 0 20px;
-  }
-  header.hero {
-    display:flex; align-items:center; justify-content:space-between;
-    background: linear-gradient(145deg, rgba(155,225,93,.15), rgba(33,212,253,.10));
-    border: 1px solid rgba(255,255,255,.06);
-    padding: 22px 24px; border-radius: var(--radius); box-shadow: var(--shadow);
-  }
-  header h1 { margin:0; font-weight:800; letter-spacing:.2px; }
-  header .meta { color: var(--muted); font-size:.95rem }
-  .grid {
-    display:grid; grid-template-columns: 260px 1fr 320px; gap: 18px; margin-top: 18px;
-  }
-  .panel {
-    background: linear-gradient(180deg, var(--panel), var(--panel-2));
-    border: 1px solid rgba(255,255,255,.06);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-  }
-  .col { min-height: 200px; }
-  /* LEFT: date nav */
-  .days { padding: 14px; }
-  .day-card {
-    padding: 12px 12px; border-radius: 14px; margin-bottom: 10px;
-    display:flex; gap: 10px; align-items:center; cursor:pointer;
-    transition: transform .15s ease, background .15s ease;
-    border:1px solid rgba(255,255,255,.06);
-  }
-  .day-card:hover { transform: translateY(-1px); background: rgba(255,255,255,.03) }
-  .dot { width:12px; height:12px; border-radius:50%; background: var(--primary); flex: 0 0 auto; box-shadow: 0 0 0 3px rgba(155,225,93,.25) }
-  .day-title { font-weight:700 }
-  .day-sub { color:var(--muted); font-size:.9rem }
-  /* MIDDLE: itinerary cards */
-  .itinerary { padding: 16px; display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 14px; }
-  .card {
-    border-radius: 18px; overflow: hidden; border:1px solid rgba(255,255,255,.07);
-    background: var(--card); display:flex; flex-direction: column; min-height: 220px;
-  }
-  .thumb {
-    position: relative; height: 140px; background:#101826; overflow:hidden;
-    background-size: cover; background-position: center;
-  }
-  .badge { position:absolute; top:10px; left:10px; padding:6px 10px; border-radius: 999px; font-weight:700; font-size:.78rem; background: rgba(0,0,0,.45); border:1px solid rgba(255,255,255,.2) }
-  .card h3 { margin: 12px 12px 6px; font-size: 1.05rem }
-  .card p { margin: 0 12px 14px; color: var(--muted); font-size: .95rem }
-  .pill { display:inline-flex; align-items:center; gap:6px; font-size:.8rem; padding: 6px 10px; border-radius:999px; border:1px solid rgba(255,255,255,.12); margin: 0 0 12px 12px; }
-  /* RIGHT: travel + weather */
-  .sidebar { padding: 16px; display:flex; flex-direction: column; gap: 14px }
-  .widget { padding: 14px; border:1px solid rgba(255,255,255,.08); border-radius: 14px; background: rgba(255,255,255,.03) }
-  .widget h4 { margin:0 0 8px; }
-  .flight {
-    display:grid; grid-template-columns: 1fr auto; gap:6px; font-size:.95rem; margin-top: 8px;
-  }
-  .flight div:nth-child(odd) { color: var(--muted) }
-  .calendar { display:grid; grid-template-columns: repeat(7, 1fr); gap: 6px; margin-top: 10px; font-size:.9rem }
-  .calendar .cell {
-    padding: 8px 0; text-align:center; border-radius: 8px; border:1px dashed rgba(255,255,255,.08);
-  }
-  .calendar .active { background: rgba(155,225,93,.22); border-color: rgba(155,225,93,.55) }
-  .credits { margin-top: 28px; padding: 16px; font-size: .9rem; color: var(--muted) }
-  .credits a { color: var(--primary-2); text-decoration: none }
-  .emojiCard .thumb { background-image: linear-gradient(120deg, rgba(155,225,93,.4), rgba(33,212,253,.35)); display:flex; align-items:center; justify-content:center; font-size: 46px }
-  @media (max-width: 1080px) {
-    .grid { grid-template-columns: 1fr; }
-    .itinerary { grid-template-columns: 1fr; }
-  }
+:root{
+  --bg:#f6f8ff;
+  --ink:#101426;
+  --muted:#6f7a97;
+  --panel:#ffffff;
+  --border:rgba(18,22,37,.08);
+  --brand:#5865f2;
+  --accent:#00c2a8;
+  --shadow:0 10px 30px rgba(18,22,37,.08), 0 2px 8px rgba(18,22,37,.06);
+  --radius:22px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:radial-gradient(1200px 600px at -5% -5%,#e9f1ff,#f7f9ff 40%,var(--bg)) fixed;color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+a{color:#0b74d8;text-decoration:none;border-bottom:1px dashed #0b74d8}
+a:hover{border-bottom-style:solid}
+
+.layout{width:100%;padding:20px 24px;display:grid;grid-template-columns:300px 1fr 420px;gap:20px}
+
+/* Sticky left menu with icons */
+aside.nav{position:sticky;top:0;height:100svh;align-self:start;background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px 14px;overflow:auto}
+.brand{display:flex;align-items:center;gap:12px;font-weight:800;font-size:18px;padding:8px 10px}
+.brand-badge{width:36px;height:36px;border-radius:12px;background:linear-gradient(135deg,var(--brand),#8ea0ff);box-shadow:0 6px 20px rgba(88,101,242,.35)}
+.navgroup{margin-top:8px}
+.navitem{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:12px;margin-bottom:8px;color:inherit;border:1px solid transparent}
+.navitem.active{background:#fff;border-color:var(--border);box-shadow:var(--shadow)}
+.navitem:hover{background:#fff}
+.navitem .ico{width:18px;height:18px;opacity:.85}
+.badge{background:linear-gradient(135deg,#d1e4ff,#fff);border:1px solid var(--border);padding:6px 10px;border-radius:12px;font-weight:700;color:#103464;display:inline-block;margin:8px 10px}
+
+/* Main column */
+main .section{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px;margin-bottom:20px}
+h1{margin:0;font-size:28px;letter-spacing:.2px}
+h2{margin:0 0 10px 0;font-size:18px}
+.hero{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.meta{color:var(--muted)}
+.hero .cover{width:100%;height:160px;border-radius:16px;margin-top:12px;background:linear-gradient(135deg,#eef4ff,#fefefe)}
+.search{display:flex;gap:10px;margin-top:12px}
+.search input{flex:1;border:1px solid var(--border);border-radius:12px;padding:10px 12px;background:#fff}
+.search button{background:linear-gradient(135deg,var(--brand),#8ea0ff);border:none;border-radius:10px;padding:10px 12px;color:white;font-weight:700;cursor:pointer}
+
+/* Filter chips */
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 2px}
+.chip{border:1px solid var(--border);border-radius:999px;padding:6px 10px;font-weight:700;font-size:12px;background:#fff;cursor:pointer}
+.chip.active{background:linear-gradient(135deg,#e6fff7,#ffffff);border-color:#d6f7f1;color:#0b3e36}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.card{background:#fff;border:1px solid var(--border);border-radius:18px;box-shadow:var(--shadow);overflow:hidden}
+.thumb{height:160px;background-size:cover;background-position:center}
+.body{padding:12px}
+.title{font-weight:800}
+.subtitle{color:var(--muted);font-size:12px;margin-top:4px}
+.desc{color:#33416a;font-size:13px;margin-top:6px}
+.tagrow{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.tag{font-size:11px;border:1px solid var(--border);padding:4px 8px;border-radius:999px;color:#4b5a84;background:#f7f9ff}
+
+.day{margin-top:10px}
+.day-head{display:flex;justify-content:space-between;align-items:center;margin:6px 0 8px}
+.day-head .left{display:flex;align-items:center;gap:8px}
+.dot{width:10px;height:10px;border-radius:999px;background:var(--accent);box-shadow:0 0 0 6px rgba(0,194,168,.15)}
+.pill{background:linear-gradient(135deg,#e6fff7,#ffffff);border:1px solid #d6f7f1;color:#0b3e36;padding:6px 10px;border-radius:999px;font-weight:800;font-size:12px;display:inline-block}
+
+/* Right column */
+.right{position:sticky;top:0;height:100svh;align-self:start;overflow:auto}
+.panel{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px;margin-bottom:18px}
+
+.flights .fcard{display:grid;grid-template-columns:1fr auto;gap:8px;background:#fff;border:1px solid var(--border);border-radius:14px;padding:12px;margin-bottom:10px;box-shadow:var(--shadow)}
+.f-route{font-weight:800}
+.f-sub{color:#6f7a97;font-size:12px}
+.f-time{font-weight:800;color:#122857}
+.f-badges{display:flex;gap:6px;flex-wrap:wrap}
+.kb{background:linear-gradient(135deg,#fff7e6,#fff);border:1px solid #ffe2ad;color:#513a06;padding:4px 8px;border-radius:999px;font-weight:700;font-size:11px}
+
+/* Weather compact */
+.wxgrid{display:grid;grid-template-columns:1fr;gap:8px}
+.wx{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:10px;border:1px solid var(--border);border-radius:14px;background:#fff;box-shadow:var(--shadow);padding:10px}
+.wx .icon{width:32px;height:32px}
+.wx .hi{font-weight:800}
+.wx .lo{color:#6f7a97}
+
+.credits{font-size:12px;color:#6f7a97}
+.credits a{color:#0b74d8;border-bottom:1px dashed #0b74d8}
+
+@media (max-width: 1360px){ .layout{grid-template-columns:280px 1fr 360px} }
+@media (max-width: 980px){ .layout{grid-template-columns:1fr} aside.nav,.right{position:static;height:auto} }
 </style>
 </head>
 <body>
-  <div class="app">
-    <header class="hero panel">
-      <div>
-        <h1>Asheville Family Trip</h1>
-        <div class="meta">Aug 10–14 • Airbnb: 16 Crestview Ct, Asheville, NC 28806 • Car rental: AVL</div>
+<div class="layout">
+  <!-- Sticky LEFT MENU -->
+  <aside class="nav">
+    <div class="brand"><div class="brand-badge"></div> Asheville Trip</div>
+    <div class="navgroup">
+      <a class="navitem active" href="#top"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 12l9-9 9 9" stroke-width="2"/><path d="M4 10v10h5v-6h6v6h5V10" stroke-width="2"/></svg> Dashboard</a>
+      <a class="navitem" href="#explore"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="7" stroke-width="2"/><line x1="21" y1="21" x2="16.65" y2="16.65" stroke-width="2"/></svg> Explore</a>
+      <a class="navitem" href="#bydate"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="4" width="18" height="18" rx="2" ry="2" stroke-width="2"/><line x1="16" y1="2" x2="16" y2="6" stroke-width="2"/><line x1="8" y1="2" x2="8" y2="6" stroke-width="2"/><line x1="3" y1="10" x2="21" y2="10" stroke-width="2"/></svg> Itinerary</a>
+      <a class="navitem" href="#weather"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="5" stroke-width="2"/><line x1="12" y1="1" x2="12" y2="3" stroke-width="2"/><line x1="12" y1="21" x2="12" y2="23" stroke-width="2"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64" stroke-width="2"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" stroke-width="2"/></svg> Weather</a>
+      <a class="navitem" href="asheville_itinerary_locations.csv" download><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" stroke-width="2"/><polyline points="7 10 12 15 17 10" stroke-width="2"/><line x1="12" y1="15" x2="12" y2="3" stroke-width="2"/></svg> Download CSV</a>
+    </div>
+    <div class="badge">Aug 10–14, 2025</div>
+  </aside>
+
+  <!-- MAIN COLUMN -->
+  <main id="top">
+    <section class="section">
+      <div class="hero">
+        <div>
+          <h1>Your Asheville plan</h1>
+          <div class="meta">Family of 4 · Airbnb: 16 Crestview Ct · Biltmore entry Tue 10:45 AM</div>
+        </div>
+        <button class="badge" onclick="window.print()">Print / Save PDF</button>
+        <div class="cover"></div>
       </div>
-      <div class="meta">Built for: You + 2 kids (4y11m, 2y9m)</div>
-    </header>
-
-    <section class="grid">
-      <!-- LEFT COLUMN: DAYS -->
-      <aside class="col panel">
-        <div class="days">
-          <div class="day-card" onclick="scrollToDay('day1')"><span class="dot"></span><div><div class="day-title">Sun, Aug 10</div><div class="day-sub">Arrival + Groceries + Dinner</div></div></div>
-          <div class="day-card" onclick="scrollToDay('day2')"><span class="dot"></span><div><div class="day-title">Mon, Aug 11</div><div class="day-sub">Downtown & Play</div></div></div>
-          <div class="day-card" onclick="scrollToDay('day3')"><span class="dot"></span><div><div class="day-title">Tue, Aug 12</div><div class="day-sub">Biltmore House (10:45am)</div></div></div>
-          <div class="day-card" onclick="scrollToDay('day4')"><span class="dot"></span><div><div class="day-title">Wed, Aug 13</div><div class="day-sub">Nature Day</div></div></div>
-          <div class="day-card" onclick="scrollToDay('day5')"><span class="dot"></span><div><div class="day-title">Thu, Aug 14</div><div class="day-sub">Depart 10:26am</div></div></div>
-        </div>
-      </aside>
-
-      <!-- MIDDLE: ITINERARY -->
-      <main class="col panel" id="itinerary">
-        <div class="itinerary">
-          <!-- Day 1 -->
-          <div class="card" id="day1">
-            <div class="thumb" style="background-image:url('https://commons.wikimedia.org/wiki/Special:FilePath/Asheville%20Regional%20Airport%201.jpg')">
-              <span class="badge">Arrival</span>
-            </div>
-            <h3>Fly in • AA 5395 to AVL</h3>
-            <p>Pick up car at AVL, head to Airbnb. Quick grocery run at Ingles on Leicester Hwy (~10 min).</p>
-            <div class="pill">Check-in + Unpack</div>
-          </div>
-
-          <div class="card">
-            <div class="thumb" style="background-image:url('https://commons.wikimedia.org/wiki/Special:FilePath/An%20Ingles%20Supermarket%20in%20Asheville.jpg')">
-              <span class="badge">Groceries</span>
-            </div>
-            <h3>Ingles Markets</h3>
-            <p>Stock up on snacks, kid-friendly breakfast, water, and picnic supplies.</p>
-          </div>
-
-          <div class="card emojiCard">
-            <div class="thumb"><div>🍗</div></div>
-            <h3>Rocky’s Hot Chicken Shack (West)</h3>
-            <p>Casual dinner near your Airbnb. Kid baskets available. (Temporary card image—see Credits)</p>
-          </div>
-
-          <!-- Day 2 -->
-          <div class="card" id="day2">
-            <div class="thumb" style="background-image:url('https://commons.wikimedia.org/wiki/Special:FilePath/Pack%20Square%20Park%20Asheville%201.jpg')">
-              <span class="badge">Play</span>
-            </div>
-            <h3>Pack Square Park & “Splasheville”</h3>
-            <p>Mornings are best for the splash pad. Bring water shoes & towels.</p>
-            <div class="pill">Lunch: White Duck Taco (downtown)</div>
-          </div>
-
-          <div class="card">
-            <div class="thumb" style="background-image:url('https://commons.wikimedia.org/wiki/Special:FilePath/White%20Duck%20Taco.jpg')">
-              <span class="badge">Lunch</span>
-            </div>
-            <h3>White Duck Taco</h3>
-            <p>Fast, delicious, kid-pleasing tacos. Try the duck mole or Bangkok shrimp.</p>
-          </div>
-
-          <!-- Day 3 -->
-          <div class="card" id="day3">
-            <div class="thumb" style="background-image:url('https://commons.wikimedia.org/wiki/Special:FilePath/Biltmore%20Estate-27527-2.jpg')">
-              <span class="badge">Tickets 10:45am</span>
-            </div>
-            <h3>Biltmore House Tour</h3>
-            <p>Arrive 45–60 min early for parking & shuttle. Stroller check available. Restrooms by Stable Courtyard.</p>
-            <div class="pill">Nap/reset at Airbnb afterward</div>
-          </div>
-
-          <div class="card emojiCard">
-            <div class="thumb"><div>🥪</div></div>
-            <h3>Stable Café (lunch)</h3>
-            <p>Casual café beside the House. (Biltmore does not host CC images; placeholder used—see Credits.)</p>
-          </div>
-
-          <div class="card">
-            <div class="thumb" style="background-image:url('https://commons.wikimedia.org/wiki/Special:FilePath/Biltmore%20Winery%202010.jpg')">
-              <span class="badge">Evening</span>
-            </div>
-            <h3>Antler Hill Village & Farmyard</h3>
-            <p>Farm animals, playground, and winery. Easy evening stroll with the kids.</p>
-          </div>
-
-          <!-- Day 4 -->
-          <div class="card" id="day4">
-            <div class="thumb" style="background-image:url('https://commons.wikimedia.org/wiki/Special:FilePath/North%20Carolina%20Arboretum%20-%20bonsai%20area.JPG')">
-              <span class="badge">Morning</span>
-            </div>
-            <h3>North Carolina Arboretum</h3>
-            <p>Stroller-friendly paths & Bonsai Garden. Pack snacks for a shaded break.</p>
-          </div>
-
-          <div class="card">
-            <div class="thumb" style="background-image:url('https://commons.wikimedia.org/wiki/Special:FilePath/Red%20Fox%20(4500627531).jpg')">
-              <span class="badge">Afternoon</span>
-            </div>
-            <h3>WNC Nature Center</h3>
-            <p>Local wildlife—including river otters, foxes, and black bears—on easy loops perfect for toddlers.</p>
-          </div>
-
-          <div class="card">
-            <div class="thumb" style="background-image:url('https://commons.wikimedia.org/wiki/Special:FilePath/Sierra%20Nevada%20Brewing%20Company%20entrance%2C%20Mills%20River%2C%20North%20Carolina%2C%20May%202017.jpg')">
-              <span class="badge">Dinner</span>
-            </div>
-            <h3>Sierra Nevada – Mills River</h3>
-            <p>Big outdoor space, kids’ menu, and room to roam. Book ahead if you can.</p>
-          </div>
-
-          <!-- Day 5 -->
-          <div class="card" id="day5">
-            <div class="thumb" style="background-image:url('https://commons.wikimedia.org/wiki/Special:FilePath/2019-07-21%20Green%20Knob%20Overlook%20--%20Blue%20Ridge%20Parkway%20(NC).jpg')">
-              <span class="badge">Optional</span>
-            </div>
-            <h3>Blue Ridge Parkway mini-drive</h3>
-            <p>Quick sunrise look at a nearby overlook if everyone’s up early.</p>
-          </div>
-
-          <div class="card">
-            <div class="thumb" style="background-image:url('https://commons.wikimedia.org/wiki/Special:FilePath/Asheville%20Regional%20Airport%201.jpg')">
-              <span class="badge">Departure</span>
-            </div>
-            <h3>Fly out • AA 5213</h3>
-            <p>AVL → DCA • Thu Aug 14 • Departs 10:26am (arrive 90 min early for rental return).</p>
-          </div>
-        </div>
-      </main>
-
-      <!-- RIGHT: TRAVEL + WEATHER -->
-      <aside class="col panel">
-        <div class="sidebar">
-          <div class="widget">
-            <h4>Flights</h4>
-            <div class="flight"><div>Arrival</div><div>Sun Aug 10</div></div>
-            <div class="flight"><div>Flight</div><div>AA 5395</div></div>
-            <div class="flight"><div>Route</div><div>DCA → AVL</div></div>
-            <div class="flight"><div>Sched</div><div>5:13p → 6:50p</div></div>
-            <hr style="border: none; border-top:1px solid rgba(255,255,255,.08); margin:10px 0" />
-            <div class="flight"><div>Departure</div><div>Thu Aug 14</div></div>
-            <div class="flight"><div>Flight</div><div>AA 5213</div></div>
-            <div class="flight"><div>Route</div><div>AVL → DCA</div></div>
-            <div class="flight"><div>Sched</div><div>10:26a → 12:01p</div></div>
-          </div>
-
-          <div class="widget">
-            <h4>Weather (Asheville)</h4>
-            <div class="calendar">
-              <div class="cell">Sun</div><div class="cell">Mon</div><div class="cell">Tue</div><div class="cell">Wed</div><div class="cell">Thu</div><div class="cell">Fri</div><div class="cell">Sat</div>
-              <div class="cell active">10<br>🌤️ 82/64</div>
-              <div class="cell active">11<br>⛅ 84/65</div>
-              <div class="cell active">12<br>🌦️ 83/66</div>
-              <div class="cell active">13<br>⛅ 85/66</div>
-              <div class="cell active">14<br>🌤️ 84/65</div>
-              <div class="cell">15</div><div class="cell">16</div>
-            </div>
-            <div style="margin-top:8px; color:var(--muted); font-size:.85rem">Icons are illustrative. I can wire this to a live forecast if you want.</div>
-          </div>
-
-          <div class="widget">
-            <h4>Stay address</h4>
-            <div>16 Crestview Ct<br/>Asheville, NC 28806</div>
-          </div>
-        </div>
-      </aside>
+      <div class="search">
+        <input placeholder="Search your stops or addresses (⌘/Ctrl+F works great)" />
+        <button onclick="window.print()">Print</button>
+      </div>
+      <div class="filters" id="filters">
+        <div class="chip active" data-tag="all">All</div>
+        <div class="chip" data-tag="kids">Kids</div>
+        <div class="chip" data-tag="food">Food</div>
+        <div class="chip" data-tag="outdoors">Outdoors</div>
+        <div class="chip" data-tag="estate">Estate</div>
+        <div class="chip" data-tag="travel">Travel</div>
+      </div>
     </section>
 
-    <section class="panel credits">
-      <div><strong>Image credits</strong> – All images used are freely licensed (Public Domain or Creative Commons) via Wikimedia Commons. Click to view details / licenses:</div>
+    <section id="explore" class="section">
+      <h2>Explore</h2>
+      <div class="grid">
+        <div class="card card-item" data-tags="estate kids">
+          <div class="thumb" style="background-image:url('https://commons.wikimedia.org/wiki/Special:FilePath/Biltmore%20Estate-27527-2.jpg')"></div>
+          <div class="body">
+            <div class="title">Biltmore House</div>
+            <div class="subtitle">Tue 10:45 AM</div>
+            <div class="desc">Arrive 45–60 min early to park and reach the House.</div>
+            <div class="tagrow"><span class="tag">Estate</span><span class="tag">Kids</span></div>
+          </div>
+        </div>
+        <div class="card card-item" data-tags="outdoors kids">
+          <div class="thumb" style="background-image:url('https://commons.wikimedia.org/wiki/Special:FilePath/North%20Carolina%20Arboretum%20-%20bonsai%20area.JPG')"></div>
+          <div class="body">
+            <div class="title">NC Arboretum</div>
+            <div class="subtitle">Wed AM</div>
+            <div class="desc">Shaded paths & bonsai; parking fee applies.</div>
+            <div class="tagrow"><span class="tag">Outdoors</span><span class="tag">Kids</span></div>
+          </div>
+        </div>
+        <div class="card card-item" data-tags="kids outdoors">
+          <div class="thumb" style="background-image:url('https://commons.wikimedia.org/wiki/Special:FilePath/Pack%20Square%20Park%20Asheville%201.jpg')"></div>
+          <div class="body">
+            <div class="title">Splasheville (Pack Square)</div>
+            <div class="subtitle">Mon 3–4:30 PM</div>
+            <div class="desc">Free splash pad at Pack Square.</div>
+            <div class="tagrow"><span class="tag">Kids</span><span class="tag">Outdoors</span></div>
+          </div>
+        </div>
+        <div class="card card-item" data-tags="food">
+          <div class="thumb" style="background-image:url('https://commons.wikimedia.org/wiki/Special:FilePath/Sierra%20Nevada%20Brewing%20Company%20entrance%2C%20Mills%20River%2C%20North%20Carolina%2C%20May%202017.jpg')"></div>
+          <div class="body">
+            <div class="title">Sierra Nevada Taproom</div>
+            <div class="subtitle">Wed Dinner</div>
+            <div class="desc">Huge patio + greenspace; book or join waitlist.</div>
+            <div class="tagrow"><span class="tag">Food</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="bydate" class="section">
+      <h2>Itinerary by Date</h2>
+      <!-- Sun -->
+      <div class="day" id="day-2025-08-10">
+        <div class="day-head"><div class="left"><div class="dot"></div><div class="title">Sunday, Aug 10</div></div><div class="pill">Arrival Day</div></div>
+        <div class="grid">
+          <div class="card card-item" data-tags="travel">
+            <div class="thumb" style="background-image:url('https://commons.wikimedia.org/wiki/Special:FilePath/Asheville%20Regional%20Airport%201.jpg')"></div>
+            <div class="body"><div class="title">Arrive AVL — pick up rental car</div><div class="subtitle">Asheville Regional Airport</div><div class="tagrow"><span class="tag">Travel</span></div></div>
+          </div>
+          <div class="card card-item" data-tags="food">
+            <div class="thumb" style="background-image:url('https://commons.wikimedia.org/wiki/Special:FilePath/An%20Ingles%20Supermarket%20in%20Asheville.jpg')"></div>
+            <div class="body"><div class="title">Groceries</div><div class="subtitle">Ingles #5 — West Asheville</div><div class="tagrow"><span class="tag">Food</span></div></div>
+          </div>
+          <div class="card card-item" data-tags="food">
+            <div class="thumb" style="background-image:linear-gradient(135deg,#ffd9a8,#fff0d1)"></div>
+            <div class="body"><div class="title">Dinner — Rocky’s Hot Chicken Shack</div><div class="subtitle">West Asheville</div><div class="desc">Placeholder tile (no CC photo).</div><div class="tagrow"><span class="tag">Food</span></div></div>
+          </div>
+        </div>
+      </div>
+      <!-- Mon -->
+      <div class="day" id="day-2025-08-11">
+        <div class="day-head"><div class="left"><div class="dot"></div><div class="title">Monday, Aug 11</div></div><div class="pill">Downtown & Play</div></div>
+        <div class="grid">
+          <div class="card card-item" data-tags="kids outdoors">
+            <div class="thumb" style="background-image:url('https://commons.wikimedia.org/wiki/Special:FilePath/Red%20Fox%20(4500627531).jpg')"></div>
+            <div class="body"><div class="title">WNC Nature Center</div><div class="subtitle">10:00 AM – 1:00 PM</div><div class="tagrow"><span class="tag">Kids</span><span class="tag">Outdoors</span></div></div>
+          </div>
+          <div class="card card-item" data-tags="food">
+            <div class="thumb" style="background-image:url('https://commons.wikimedia.org/wiki/Special:FilePath/White%20Duck%20Taco.jpg')"></div>
+            <div class="body"><div class="title">Lunch — White Duck Taco</div><div class="subtitle">1:15 PM · Downtown</div><div class="tagrow"><span class="tag">Food</span></div></div>
+          </div>
+          <div class="card card-item" data-tags="kids outdoors">
+            <div class="thumb" style="background-image:url('https://commons.wikimedia.org/wiki/Special:FilePath/Pack%20Square%20Park%20Asheville%201.jpg')"></div>
+            <div class="body"><div class="title">Splasheville (Pack Square)</div><div class="subtitle">3:00 – 4:30 PM</div><div class="tagrow"><span class="tag">Kids</span><span class="tag">Outdoors</span></div></div>
+          </div>
+          <div class="card card-item" data-tags="food">
+            <div class="thumb" style="background-image:linear-gradient(135deg,#e3f9f4,#fff)"></div>
+            <div class="body"><div class="title">Dinner — Tupelo Honey</div><div class="subtitle">5:30 PM · Downtown</div><div class="desc">Placeholder tile (no CC photo).</div><div class="tagrow"><span class="tag">Food</span></div></div>
+          </div>
+        </div>
+      </div>
+      <!-- Tue -->
+      <div class="day" id="day-2025-08-12">
+        <div class="day-head"><div class="left"><div class="dot"></div><div class="title">Tuesday, Aug 12</div></div><div class="pill">Biltmore Day</div></div>
+        <div class="grid">
+          <div class="card card-item" data-tags="estate kids">
+            <div class="thumb" style="background-image:url('https://commons.wikimedia.org/wiki/Special:FilePath/Biltmore%20Estate-27527-2.jpg')"></div>
+            <div class="body"><div class="title">Biltmore House Entry</div><div class="subtitle">10:45 AM (arrive ~9:45–10:00)</div><div class="tagrow"><span class="tag">Estate</span><span class="tag">Kids</span></div></div>
+          </div>
+          <div class="card card-item" data-tags="food">
+            <div class="thumb" style="background-image:linear-gradient(135deg,#fde2f2,#fff)"></div>
+            <div class="body"><div class="title">Lunch — Stable Café</div><div class="subtitle">On Estate</div><div class="desc">Placeholder tile (no CC photo).</div><div class="tagrow"><span class="tag">Food</span></div></div>
+          </div>
+          <div class="card card-item" data-tags="estate kids">
+            <div class="thumb" style="background-image:url('https://commons.wikimedia.org/wiki/Special:FilePath/Biltmore%20Winery%202010.jpg')"></div>
+            <div class="body"><div class="title">Antler Hill Village & Farmyard</div><div class="subtitle">Afternoon stroll</div><div class="tagrow"><span class="tag">Estate</span><span class="tag">Kids</span></div></div>
+          </div>
+        </div>
+      </div>
+      <!-- Wed -->
+      <div class="day" id="day-2025-08-13">
+        <div class="day-head"><div class="left"><div class="dot"></div><div class="title">Wednesday, Aug 13</div></div><div class="pill">Nature Day</div></div>
+        <div class="grid">
+          <div class="card card-item" data-tags="outdoors kids">
+            <div class="thumb" style="background-image:url('https://commons.wikimedia.org/wiki/Special:FilePath/North%20Carolina%20Arboretum%20-%20bonsai%20area.JPG')"></div>
+            <div class="body"><div class="title">North Carolina Arboretum</div><div class="subtitle">9:30 AM – 12:00 PM</div><div class="tagrow"><span class="tag">Outdoors</span><span class="tag">Kids</span></div></div>
+          </div>
+          <div class="card card-item" data-tags="outdoors">
+            <div class="thumb" style="background-image:url('https://commons.wikimedia.org/wiki/Special:FilePath/2019-07-21%20Green%20Knob%20Overlook%20--%20Blue%20Ridge%20Parkway%20(NC).jpg')"></div>
+            <div class="body"><div class="title">Blue Ridge Parkway Overlooks</div><div class="subtitle">Afternoon (flex)</div><div class="tagrow"><span class="tag">Outdoors</span></div></div>
+          </div>
+          <div class="card card-item" data-tags="food">
+            <div class="thumb" style="background-image:url('https://commons.wikimedia.org/wiki/Special:FilePath/Sierra%20Nevada%20Brewing%20Company%20entrance%2C%20Mills%20River%2C%20North%20Carolina%2C%20May%202017.jpg')"></div>
+            <div class="body"><div class="title">Dinner — Sierra Nevada Taproom</div><div class="subtitle">5:30 PM · Mills River</div><div class="tagrow"><span class="tag">Food</span></div></div>
+          </div>
+        </div>
+      </div>
+      <!-- Thu -->
+      <div class="day" id="day-2025-08-14">
+        <div class="day-head"><div class="left"><div class="dot"></div><div class="title">Thursday, Aug 14</div></div><div class="pill">Departure</div></div>
+        <div class="grid">
+          <div class="card card-item" data-tags="travel">
+            <div class="thumb" style="background-image:url('https://commons.wikimedia.org/wiki/Special:FilePath/Asheville%20Regional%20Airport%201.jpg')"></div>
+            <div class="body"><div class="title">Fly AVL → DCA — AA 5213</div><div class="subtitle">Departs 10:26 AM (arrive ~8:00)</div><div class="tagrow"><span class="tag">Travel</span></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section credits">
+      <strong>Image credits</strong> — Public Domain / Creative Commons via Wikimedia Commons:
       <ul>
         <li>Biltmore House — Ken Thomas — Public Domain — <a href='https://commons.wikimedia.org/wiki/File:Biltmore_Estate-27527-2.jpg' target='_blank' rel='noopener'>source</a></li><li>Biltmore Winery (Antler Hill Village) — HumongoNation Photo Gallery (Flickr) — CC BY 2.0 — <a href='https://commons.wikimedia.org/wiki/File:Biltmore_Winery_2010.jpg' target='_blank' rel='noopener'>source</a></li><li>Pack Square Park (near Splasheville) — Wikimedia Commons contributor — CC (see file) — <a href='https://commons.wikimedia.org/wiki/File:Pack_Square_Park_Asheville_1.jpg' target='_blank' rel='noopener'>source</a></li><li>Red Fox at WNC Nature Center — wes hill — CC BY 2.0 — <a href='https://commons.wikimedia.org/wiki/File:Red_Fox_(4500627531).jpg' target='_blank' rel='noopener'>source</a></li><li>NC Arboretum – Bonsai Area — Daderot — Public Domain — <a href='https://commons.wikimedia.org/wiki/File:North_Carolina_Arboretum_-_bonsai_area.JPG' target='_blank' rel='noopener'>source</a></li><li>Blue Ridge Parkway – Green Knob Overlook — Ron Cogswell — CC BY 2.0 — <a href='https://en.wikipedia.org/wiki/File:2019-07-21_Green_Knob_Overlook_--_Blue_Ridge_Parkway_(NC).jpg' target='_blank' rel='noopener'>source</a></li><li>Sierra Nevada Brewing Co. – Mills River entrance — Kevin — CC BY-SA 4.0 — <a href='https://commons.wikimedia.org/wiki/File:Sierra_Nevada_Brewing_Company_entrance,_Mills_River,_North_Carolina,_May_2017.jpg' target='_blank' rel='noopener'>source</a></li><li>Asheville Regional Airport (AVL) — Wikimedia Commons contributor — CC (see file) — <a href='https://commons.wikimedia.org/wiki/File:Asheville_Regional_Airport_1.jpg' target='_blank' rel='noopener'>source</a></li><li>Ingles Supermarket (Asheville) — Wikimedia Commons contributor — CC BY-SA 4.0 — <a href='https://commons.wikimedia.org/wiki/File:An_Ingles_Supermarket_in_Asheville.jpg' target='_blank' rel='noopener'>source</a></li><li>White Duck Taco — wilgeo5 — CC BY-SA 4.0 — <a href='https://commons.wikimedia.org/wiki/File:White_Duck_Taco.jpg' target='_blank' rel='noopener'>source</a></li>
-        <li>Rocky’s Hot Chicken Shack & Stable Café: no freely-licensed photos available. Temporary illustrated cards shown. If you take a photo on your trip, I can swap it in post-trip.</li>
+        <li>Rocky’s Hot Chicken Shack, Tupelo Honey, Stable Café: placeholders used (no CC images). Happy to swap with your photos later.</li>
       </ul>
     </section>
+  </main>
+
+  <!-- RIGHT COLUMN -->
+  <div class="right">
+    <div class="panel flights">
+      <h2>Flights</h2>
+      <div class="fcard">
+        <div><div class="f-route">DCA → AVL</div><div class="f-sub">AA 5395 · PSA / American Eagle</div></div>
+        <div style="text-align:right"><div class="f-time">Sun 5:13 PM</div><div class="f-sub">Arrive 6:50 PM</div></div>
+        <div class="f-badges" style="grid-column:1/-1">
+          <div class="kb">Seats: 1D 1F 2D 2F</div><div class="kb">Business (J)</div>
+        </div>
+      </div>
+      <div class="fcard">
+        <div><div class="f-route">AVL → DCA</div><div class="f-sub">AA 5213 · PSA / American Eagle</div></div>
+        <div style="text-align:right"><div class="f-time">Thu 10:26 AM</div><div class="f-sub">Arrive 12:01 PM</div></div>
+        <div class="f-badges" style="grid-column:1/-1">
+          <div class="kb">Seats: 2D 2F 3D 3F</div><div class="kb">Business (J)</div>
+        </div>
+      </div>
+    </div>
+
+    <section id="weather" class="panel">
+      <h2>Weather</h2>
+      <div class="wxgrid">
+        <div class="wx"><img class="icon" alt="" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'><circle cx='24' cy='24' r='10' stroke='%230b74d8' stroke-width='3' fill='none'/><g stroke='%230b74d8' stroke-width='3'><line x1='24' y1='2' x2='24' y2='10'/><line x1='24' y1='38' x2='24' y2='46'/><line x1='2' y1='24' x2='10' y2='24'/><line x1='38' y1='24' x2='46' y2='24'/></g></svg>"/><div><div class="title">Sun · Aug 10</div><div class="subtitle">Clouds & sun</div></div><div><span class="hi">82°</span> <span class="lo">/ 64°</span></div></div>
+        <div class="wx"><img class="icon" alt="" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><path d='M22 30c0-8 6-14 14-14 7 0 13 5 14 12 6 1 10 6 10 12 0 7-6 12-13 12H23C14 52 8 45 8 37c0-7 5-13 12-14' stroke='%230b74d8' stroke-width='3' fill='none'/></svg>"/><div><div class="title">Mon · Aug 11</div><div class="subtitle">Humid, a few storms</div></div><div><span class="hi">84°</span> <span class="lo">/ 65°</span></div></div>
+        <div class="wx"><img class="icon" alt="" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><circle cx='20' cy='24' r='8' stroke='%230b74d8' stroke-width='3' fill='none'/><path d='M40 34c6 0 10 3 12 7 5 0 10 3 10 8H22c0-7 7-15 18-15z' fill='%230b74d8' opacity='.15' stroke='%230b74d8'/></svg>"/><div><div class="title">Tue · Aug 12</div><div class="subtitle">Mostly cloudy</div></div><div><span class="hi">83°</span> <span class="lo">/ 66°</span></div></div>
+        <div class="wx"><img class="icon" alt="" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'><circle cx='24' cy='24' r='10' stroke='%230b74d8' stroke-width='3' fill='none'/></svg>"/><div><div class="title">Wed · Aug 13</div><div class="subtitle">Clouds & sun</div></div><div><span class="hi">85°</span> <span class="lo">/ 66°</span></div></div>
+        <div class="wx"><img class="icon" alt="" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><path d='M22 28c0-8 6-14 14-14 7 0 13 5 14 12 6 1 10 6 10 12 0 7-6 12-13 12H23C14 50 8 43 8 35c0-7 5-13 12-14' stroke='%230b74d8' stroke-width='3' fill='none'/><polyline points='30,52 36,42 28,42 34,32' stroke='%230b74d8' stroke-width='3' fill='none'/></svg>"/><div><div class="title">Thu · Aug 14</div><div class="subtitle">Chance t‑storm</div></div><div><span class="hi">84°</span> <span class="lo">/ 65°</span></div></div>
+      </div>
+      <div class="meta" style="margin-top:6px">Want live conditions? I can wire this to a weather API.</div>
+    </section>
   </div>
+</div>
 
 <script>
-  function scrollToDay(id) {
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
+// Smooth scroll & active nav
+document.querySelectorAll('a.navitem[href^="#"]').forEach(a=>{
+  a.addEventListener('click', e=>{ e.preventDefault(); document.querySelector(a.getAttribute('href')).scrollIntoView({behavior:'smooth'}); });
+});
+const sections=[...document.querySelectorAll('main .section, #explore, #bydate, #weather')];
+const navitems=[...document.querySelectorAll('a.navitem')];
+const io=new IntersectionObserver((entries)=>{
+  entries.forEach(en=>{
+    if(en.isIntersecting){
+      const id='#'+(en.target.getAttribute('id')||'top');
+      navitems.forEach(n=>n.classList.toggle('active', n.getAttribute('href')===id));
+    }
+  });
+},{rootMargin:'-40% 0px -50% 0px',threshold:0.01});
+sections.forEach(s=>s.id && io.observe(s));
+
+// Tag filters
+const chips=[...document.querySelectorAll('.chip')];
+function applyFilter(tag){
+  const cards=[...document.querySelectorAll('.card-item')];
+  if(tag==='all'){ cards.forEach(c=>c.style.display=''); return; }
+  cards.forEach(c=>{ const tags=(c.getAttribute('data-tags')||'').split(' '); c.style.display=tags.includes(tag)?'':'none'; });
+}
+chips.forEach(ch=>ch.addEventListener('click',()=>{ chips.forEach(c=>c.classList.remove('active')); ch.classList.add('active'); applyFilter(ch.dataset.tag); }));
 </script>
 </body>
 </html>
