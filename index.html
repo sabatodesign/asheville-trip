@@ -13,7 +13,7 @@
            --brand:#5865f2; --accent:#00c2a8; --shadow:0 10px 30px rgba(18,22,37,.08), 0 2px 8px rgba(18,22,37,.06);
            --radius:22px; }
     *{box-sizing:border-box}
-    html,body{margin:0;padding:0;background:radial-gradient(1200px 600px at -5% -5%,#e9f1ff,#f7f9ff 40%,var(--bg)) fixed;color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+    html,body{margin:0;padding:0;background:radial-gradient(1200px 600px at -5% -5%,#e9f1ff,#f7f9ff 40%,var(--bg)) fixed;color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;overflow-x:hidden}
     a{color:#0b74d8;text-decoration:none;border-bottom:1px dashed #0b74d8} a:hover{border-bottom-style:solid}
     .layout{width:100%;padding:20px 24px;display:grid;grid-template-columns:300px minmax(0,1fr) 320px;gap:20px}
     aside.nav{position:sticky;top:0;height:100svh;align-self:start;background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px 14px;overflow:auto}
@@ -33,31 +33,33 @@
     .search button{background:linear-gradient(135deg,var(--brand),#8ea0ff);border:none;border-radius:10px;padding:10px 12px;color:white;font-weight:700;cursor:pointer}
     .filters{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 2px} .chip{border:1px solid var(--border);border-radius:999px;padding:6px 10px;font-weight:700;font-size:12px;background:#fff;cursor:pointer}
     .chip.active{background:linear-gradient(135deg,#e6fff7,#ffffff);border-color:#d6f7f1;color:#0b3e36}
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
-    .card{background:#fff;border:1px solid var(--border);border-radius:18px;box-shadow:var(--shadow);overflow:hidden;cursor:pointer}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;min-width:0}
+    .card{background:#fff;border:1px solid var(--border);border-radius:18px;box-shadow:var(--shadow);overflow:hidden;cursor:pointer;min-width:0}
     .thumb{height:180px;overflow:hidden;background:#eef2ff}
     .thumb img{width:100%;height:100%;object-fit:cover;display:block}
     .body{padding:12px} .title{font-weight:800} .subtitle{color:#6f7a97;font-size:12px;margin-top:4px} .desc{color:#33416a;font-size:13px;margin-top:6px}
     .tagrow{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px} .tag{font-size:11px;border:1px solid var(--border);padding:4px 8px;border-radius:999px;color:#4b5a84;background:#f7f9ff}
-    .day{margin-top:32px} /* more space between days */ 
+    .day{margin-top:32px}
     .day-head{display:flex;justify-content:space-between;align-items:center;margin:6px 0 12px}
     .day-head .left{display:flex;align-items:center;gap:8px} .dot{width:10px;height:10px;border-radius:999px;background:var(--accent);box-shadow:0 0 0 6px rgba(0,194,168,.15)}
     .pill{background:linear-gradient(135deg,#e6fff7,#ffffff);border:1px solid #d6f7f1;color:#0b3e36;padding:6px 10px;border-radius:999px;font-weight:800;font-size:12px;display:inline-block}
-    .right{position:sticky;top:0;height:100svh;align-self:start;overflow:auto} .panel{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px;margin-bottom:18px}
+    .right{position:sticky;top:0;height:100svh;align-self:start;overflow:auto;min-width:0}
+    .panel{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px;margin-bottom:18px;overflow:hidden;max-width:100%}
     /* Flights (timeline like screenshot) */
-    .conf{background:#eef4ff;border:1px solid #d6e3ff;padding:10px 12px;border-radius:12px;font-weight:700;color:#1a3f96;margin-bottom:10px}
+    .conf{background:#eef4ff;border:1px solid #d6e3ff;padding:10px 12px;border-radius:12px;font-weight:700;color:#1a3f96;margin-bottom:10px;word-break:break-word}
     .itn .dayblock{border-top:1px solid var(--border);padding-top:14px;margin-top:14px}
     .itn .dtitle{color:#1556c0;font-weight:800;margin-bottom:8px}
-    .itn .row{display:grid;grid-template-columns:28px 160px 1fr;gap:12px}
-    .itn .rail{display:flex;flex-direction:column;align-items:center;margin-top:2px}
+    .itn .row{display:grid;grid-template-columns:24px 150px 1fr;gap:12px;align-items:start;min-width:0}
+    .itn .rail{display:flex;flex-direction:column;align-items:center;margin-top:2px;min-width:0}
     .itn .rail .dot{width:8px;height:8px;border-radius:50%;background:#1f2c4d;border:2px solid #cbd6ee}
     .itn .rail .line{flex:1;width:2px;background:repeating-linear-gradient(#cbd6ee 0 6px, transparent 6px 12px)}
+    .itn .label{min-width:0} .itn .facts{min-width:0}
     .itn .label .code{font-weight:800}
-    .itn .label .city{color:#6f7a97}
+    .itn .label .city{color:#6f7a97;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
     .itn .label .time{font-weight:800;margin-top:4px}
-    .itn .facts .fn{font-weight:800;margin-bottom:4px}
-    .itn .facts .op{color:#6f7a97}
-    .itn .facts .kv{display:grid;grid-template-columns:auto 1fr;gap:4px 10px;margin-top:10px}
+    .itn .facts .fn{font-weight:800;margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .itn .facts .op{color:#6f7a97;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .itn .facts .kv{display:grid;grid-template-columns:auto 1fr;gap:4px 10px;margin-top:10px;min-width:0}
     .itn .facts .k{color:#6f7a97}
     /* Weather (rows) */
     .wxgrid{display:grid;grid-template-columns:1fr;gap:8px}
@@ -74,7 +76,7 @@
     .kv{display:grid;grid-template-columns:110px 1fr;gap:6px 10px;font-size:14px}
     .k{color:#506089} .v a{color:#0b74d8}
     .hours{background:#f7f9ff;border:1px solid var(--border);border-radius:12px;padding:10px;margin-top:10px;font-size:14px;color:#22315a}
-    /* Mobile sheet up to large phones */
+    /* Mobile sheet */
     @media (max-width:900px){
       .place-card{width:100vw;height:96vh;border-radius:18px 18px 0 0;display:flex;flex-direction:column}
       .place-body{grid-template-columns:1fr;padding:12px;gap:12px;max-height:unset;overflow:auto;flex:1}
@@ -82,7 +84,7 @@
       .modal{padding:0}
     }
     /* Weather modal */
-    .modal-card{width:min(760px,96vw);background:#0f1425;color:#e8edf7;border-radius:18px;border:1px solid rgba(255,255,255,.08);box-shadow:0 20px 60px rgba(0,0,0,.5);padding:16px}
+    .modal-card{width:min(760px,96vw);background:#0f1425;color:#e8edf7;border-radius:18px;border:1px solid rgba(255,255,255,.08);box-shadow:0 20px 60px rgba(0,0,0,.5);padding:16px;max-width:100%}
     .modal-head{display:flex;justify-content:space-between;align-items:center}
     .modal-close{background:#1b2440;border:none;color:#cbd4e6;border-radius:10px;padding:10px 14px;cursor:pointer;font-weight:800}
     .modal-sub{color:#9bb0d0} .modal-chart{background:#121a32;border:1px solid rgba(255,255,255,.06);border-radius:14px;margin-top:10px;padding:10px}
@@ -144,7 +146,6 @@
 
     <section id="bydate" class="section">
       <h2>Itinerary by Date</h2>
-      <!-- Sunday -->
       <div class="day" id="day-2025-08-10">
         <div class="day-head"><div class="left"><div class="dot"></div><div class="title">Sunday, Aug 10</div></div><div class="pill">Arrival Day</div></div>
         <div class="grid">
@@ -162,7 +163,6 @@
           </div>
         </div>
       </div>
-      <!-- Monday -->
       <div class="day" id="day-2025-08-11">
         <div class="day-head"><div class="left"><div class="dot"></div><div class="title">Monday, Aug 11</div></div><div class="pill">Downtown & Play</div></div>
         <div class="grid">
@@ -180,7 +180,6 @@
           </div>
         </div>
       </div>
-      <!-- Tuesday -->
       <div class="day" id="day-2025-08-12">
         <div class="day-head"><div class="left"><div class="dot"></div><div class="title">Tuesday, Aug 12</div></div><div class="pill">Biltmore Day</div></div>
         <div class="grid">
@@ -194,7 +193,6 @@
           </div>
         </div>
       </div>
-      <!-- Wednesday -->
       <div class="day" id="day-2025-08-13">
         <div class="day-head"><div class="left"><div class="dot"></div><div class="title">Wednesday, Aug 13</div></div><div class="pill">Nature Day</div></div>
         <div class="grid">
@@ -212,7 +210,6 @@
           </div>
         </div>
       </div>
-      <!-- Thursday -->
       <div class="day" id="day-2025-08-14">
         <div class="day-head"><div class="left"><div class="dot"></div><div class="title">Thursday, Aug 14</div></div><div class="pill">Departure</div></div>
         <div class="grid">
@@ -290,7 +287,7 @@
   </div>
 </div>
 
-<!-- Modals -->
+<!-- Modals (unchanged from v17.2) -->
 <div class="modal" id="placeModal" aria-hidden="true">
   <div class="place-card">
     <div class="place-head"><div id="pmTitle" style="font-weight:800">Place</div><button class="modal-close" onclick="closePlace()">Close ✕</button></div>
@@ -335,7 +332,7 @@
     {id:'splasheville',name:'Splasheville (Pack Square Park)',img:'https://commons.wikimedia.org/wiki/Special:FilePath/Pack%20Square%20Park%20Asheville%201.jpg',address:'80 Court Plaza, Asheville, NC 28801',phone:'828-259-5800',website:'https://www.ashevillenc.gov/service/find-a-pool-or-splasheville-information/',map:'https://maps.app.goo.gl/Qn5y7yPr9j1YGEJY9',hours:'Daily 9:00 AM – 8:30 PM (may close for events/weather).'},
     {id:'sierra-nevada',name:'Sierra Nevada Brewing Co. · Mills River',img:'https://commons.wikimedia.org/wiki/Special:FilePath/Sierra%20Nevada%20Brewing%20Company%20entrance%2C%20Mills%20River%2C%20North%20Carolina%2C%20May%202017.jpg',address:'100 Sierra Nevada Way, Mills River, NC 28732',phone:'828-681-5300',website:'https://sierranevada.com/visit/mills-river/taproom',map:'https://maps.app.goo.gl/1i4dYNZxe8DL6U2Q9',hours:'Taproom hours vary—check current waitlist/reservations.'},
     {id:'wnc-nature-center',name:'WNC Nature Center',img:'https://commons.wikimedia.org/wiki/Special:FilePath/North%20American%20river%20otter%20at%20WNC%20Nature%20Center.jpg',address:'75 Gashes Creek Rd, Asheville, NC 28805',phone:'828-259-8092',website:'https://wildwnc.org/plan-your-visit/',map:'https://maps.app.goo.gl/9xYkq6RcwVcX3wVc6',hours:'10:00 AM – 4:30 PM (last entry 3:30 PM).'},
-    {id:'brp-visitor-center',name:'Blue Ridge Parkway Visitor Center (MP 384)',img:'https://commons.wikimedia.org/wiki/Special:FilePath/2019-07-21%20Green%20Knob%20Overlook%20--%20Blue%20Ridge%20Parkway%20(NC).jpg',address:'195 Hemphill Knob Rd, Asheville, NC 28803',phone:'828-298-5330',website:'https://www.nps.gov/blri/planyourvisit/blue-ridge-parkway-visitor-center.htm',map:'https://maps.app.goo.gl/8eE6aN2PoFcw4Naw9',hours:'Typically 9:00 AM – 5:00 PM.'},
+    {id:'brp-visitor-center',name:'Blue Ridge Parkway Visitor Center (MP 384)',img:'https://commons.wikimedia.org/wiki/Special:FilePath/2019-07-21%20Green%20Knob%20Overlook%20--%20Blue%20Ridge%20Parkway%20(NC).jpg',address:'195 Hemphill Knob Rd, Asheville, NC 28803',phone:'828-298-5330',website:'https://www.nps.gov/blri/planyourvisit/blue-ridge-parkway-visitor-center.htm',hours:'Typically 9:00 AM – 5:00 PM.'},
     {id:'avl-airport',name:'Asheville Regional Airport (AVL)',img:'https://commons.wikimedia.org/wiki/Special:FilePath/Asheville%20Regional%20Airport%201.jpg',address:'61 Terminal Dr, Fletcher, NC 28732',phone:'828-209-3660',website:'https://flyavl.com/',map:'https://maps.app.goo.gl/GM6R7s3aWFEAHxjS9',hours:'Open 24/7; arrive 2 hrs pre-flight.'},
     {id:'ingles-smokey-park',name:'Ingles Markets (Smokey Park Hwy)',img:'https://commons.wikimedia.org/wiki/Special:FilePath/An%20Ingles%20Supermarket%20in%20Asheville.jpg',address:'153 Smokey Park Hwy, Asheville, NC 28806',phone:'828-667-8331',website:'https://shop.ingles-markets.com/stores/asheville-4',map:'https://maps.app.goo.gl/j7wq3E1pD9nRWSxN9',hours:'Typically 6:00 AM – 11:00 PM'},
     {id:'white-duck-downtown',name:'White Duck Taco Shop (Downtown)',img:'https://commons.wikimedia.org/wiki/Special:FilePath/White%20Duck%20Taco.jpg',address:'12 Biltmore Ave, Asheville, NC 28801',phone:'828-232-9191',website:'https://whiteducktacoshop.com/locations-hours/',map:'https://maps.app.goo.gl/7k3Gz9PS9tQmXWLg6',hours:'Most days ~11:30 AM – 8/9 PM.'},
